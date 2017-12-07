@@ -3,7 +3,22 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>community</title>
+    <title>Vue中文网</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <!-- 控制页面缩放  content参数解释： viewport宽度，   初始缩放比例，    最小缩放比例，     最大缩放比例，   不允许用户缩放,    页面加载时最小化上下状态栏(IOS 7.1) -->
+
+    <style>
+      html {
+          height: 100%
+      }
+      
+      body {
+          min-height: 100%;
+          display: flex;
+          flex-direction: column;
+      }
+    </style>
+    
   </head>
   <body>
     <div id="app"></div>
