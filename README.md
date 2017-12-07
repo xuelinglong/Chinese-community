@@ -1,6 +1,6 @@
 # community
 
-> A Vue.js project
+> Vue中文网项目
 
 ## Build Setup
 
