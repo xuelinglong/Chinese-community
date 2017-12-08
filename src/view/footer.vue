@@ -1,20 +1,21 @@
 <template>
     <div class="footer">
+        <v-turn :footName="selected"></v-turn>
         <mt-tabbar fixed v-model="selected">
             <mt-tab-item id="topic">
-                <img slot="icon" src="./../assets/logo.png">
+                <img slot="icon" src="./../assets/话题.png">
                 话题
             </mt-tab-item>
-            <mt-tab-item id="未读消息">
-                <img slot="icon" src="./../assets/logo.png">
+            <mt-tab-item id="msg">
+                <img slot="icon" src="./../assets/消息.png">
                 未读消息
             </mt-tab-item>
-            <mt-tab-item id="发现">
-                <img slot="icon" src="./../assets/logo.png">
-                发现
+            <mt-tab-item id="push">
+                <img slot="icon" src="./../assets/发布.png">
+                发布
             </mt-tab-item>
-            <mt-tab-item id="我的">
-                <img slot="icon" src="./../assets/logo.png">
+            <mt-tab-item id="my">
+                <img slot="icon" src="./../assets/我的.png">
                 我的
             </mt-tab-item>
         </mt-tabbar>
@@ -22,12 +23,17 @@
 </template>
 
 <script>
+    import Turn from './turn/turn';
+
     export default {
         name: 'Footer',
         data() {
             return {
                 selected: 'topic'
             };
+        },
+        components: {
+            'v-turn': Turn
         }
     };
 </script>

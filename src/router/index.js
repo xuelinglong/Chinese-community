@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Topic from '@/view/topic';
+import Home from '@/view/home';
 
 Vue.use(Router);
 
@@ -8,8 +8,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Topic',
-      component: Topic
+      name: 'Home',
+      component: Home
     }
   ]
 });

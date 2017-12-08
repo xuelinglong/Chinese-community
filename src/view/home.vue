@@ -1,21 +1,18 @@
 <template>
     <div class="home">
         <v-header></v-header>
-        <v-tab></v-tab>
         <v-footer></v-footer>
     </div>
 </template>
 
 <script>
     import Header from './header';
-    import Tab from './tab';
     import Footer from './footer';
 
     export default {
         name: 'Home',
         components: {
             'v-header': Header,
-            'v-tab': Tab,
             'v-footer': Footer
         }
     };
