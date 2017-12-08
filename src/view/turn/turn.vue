@@ -1,7 +1,7 @@
 <template>
     <div class="turn">
         <!-- 当前选中‘话题’，取样式1  -->
-        <div v-if="footName === `topic`">
+        <div v-if="footName === `topic`" class="topic-show">
             <v-tab></v-tab>
         </div>
 
@@ -43,7 +43,7 @@
         name: 'Turn',
         data() {
             return {
-                login: '1'
+                login: '0'
             };
         },
         props: ['footName'],
