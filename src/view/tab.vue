@@ -2,28 +2,82 @@
     <div class="tab">
         <mt-navbar v-model="selected">
             <mt-tab-item id="all">全部</mt-tab-item>
-            <mt-tab-item id="essence">精华</mt-tab-item>
+            <mt-tab-item id="good">精华</mt-tab-item>
             <mt-tab-item id="weex">weex</mt-tab-item>
             <mt-tab-item id="share">分享</mt-tab-item>
-            <mt-tab-item id="answer">问答</mt-tab-item>
-            <mt-tab-item id="recruit">招聘</mt-tab-item>
+            <mt-tab-item id="ask">问答</mt-tab-item>
+            <mt-tab-item id="job">招聘</mt-tab-item>
         </mt-navbar>
-        <v-list :tabName="selected"></v-list>
+        <v-list :tabName="selected" :subjects="subjects"></v-list>
     </div>
 </template>
 
 <script>
+    import { mapState } from 'vuex';
+//    import axios from 'axios';
+    import * as type from './../store/modules/type';
+//  import fetchTopics from './../store/modules/topics';
     import List from './list';
 
     export default {
         name: 'Tab',
         data() {
             return {
-                selected: 'all'
+                selected: 'all',
+                // subjects: [],
+                page: 0
             };
         },
         components: {
             'v-list': List
+        },
+        computed: mapState({
+            subjects(state) {
+                return state.topics.topics.data;
+            }
+        }),
+        // mounted() {
+        //     axios.get('https://www.vue-js.com/api/v1/topics')
+        //     .then((res) => {
+        //         this.subjects = res.data.data.filter((data) => {
+        //             return data.tab === 'share';
+        //         });
+        //     });
+        // },
+        created() {
+            this.fetchData();
+        },
+        methods: {
+            fetchData(val) {
+                this.page = 1;
+                switch (this.selected) {
+                    case 'all':
+                        this.fetch('all', 0, 20);
+                        break;
+                    case 'good':
+                        this.fetch('good', 0, 20);
+                        break;
+                    case 'weex':
+                        this.fetch('weex', 0, 20);
+                        break;
+                    case 'share':
+                        this.fetch('share', 0, 20);
+                        break;
+                    case 'ask':
+                        this.fetch('ask', 0, 20);
+                        break;
+                    case 'job':
+                        this.fetch('job', 0, 20);
+                        break;
+                }
+            },
+            fetch(tab, page, limit) {
+                this.$store.dispatch(type.FETCH_TOPICS, {
+                    tab: this.selected,
+                    page,
+                    limit
+                });
+            }
         }
     };
 </script>

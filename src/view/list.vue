@@ -1,6 +1,12 @@
 <template>
     <div class="list">
-        <v-card v-for="subject in subjects"></v-card>
+        <div class="list-all" v-if="tabName === `all`">
+            <v-card v-for="subject in subjects" :subject="subject" :key="subject.id"></v-card>
+        </div>
+
+        <div class="other-list" v-else-if="tabName !== `all`">
+            <v-card v-for="subject in subjects" :subject="subject" :key="subject.id"></v-card>
+        </div>
         <div class="blank"></div>
     </div>
 </template>
@@ -10,15 +16,15 @@
 
     export default {
         name: 'List',
-        data() {
-            return {
-                subjects: [1, 2, 3, 4, 5]
-            };
-        },
+        // data() {
+        //     return {
+        //         subjects: []
+        //     };
+        // },
         components: {
             'v-card': Card
         },
-        props: ['tabName']
+        props: ['tabName', 'subjects']
     };
 </script>
 

@@ -2,21 +2,21 @@
     <div class="card">
         <div class="msg-bar">
             <div class="img">
-                <img src="./../assets/biker.png">
+                <img :src="subject.author.avatar_url">
             </div>
-            <div class="title">你生生世世好的回答是的杰尼索夫呢</div>
-            <div class="label">share</div>
+            <div class="title">{{ subject.title }}</div>
+            <div class="label">{{ subject.tab }}</div>
         </div>
 
         <div class="icon-bar">
             <div class="left-bar">
-                left &nbsp 23小时前
+                {{ subject.author.loginname }} &nbsp {{ subject.tab }}
             </div>
 
             <div class="right-bar">
-                <img class="icon" src="./../assets/eye.png"> 2387731 
+                <img class="icon" src="./../assets/eye.png"> {{ subject.visit_count }} 
                 &nbsp 
-                <img class="icon" src="./../assets/msg.png"> right
+                <img class="icon" src="./../assets/msg.png"> {{ subject.reply_count }}
             </div>
         </div>
     </div>
@@ -24,7 +24,8 @@
 
 <script>
     export default {
-        name: 'Card'
+        name: 'Card',
+        props: ['subject']
     };
 </script>
 
