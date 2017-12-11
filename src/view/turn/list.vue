@@ -1,18 +1,18 @@
 <template>
     <div class="list">
-        <div class="list-all" v-if="tabName === `all`">
+        <div class="list-all">
             <v-card v-for="subject in subjects" :subject="subject" :key="subject.id"></v-card>
         </div>
 
-        <div class="other-list" v-else-if="tabName !== `all`">
+        <!-- <div class="other-list" v-else-if="tabName !== `all`">
             <v-card v-for="subject in subjects" :subject="subject" :key="subject.id"></v-card>
-        </div>
+        </div> -->
         <div class="blank"></div>
     </div>
 </template>
 
 <script>
-    import Card from './../components/card';
+    import Card from './../../components/card';
 
     export default {
         name: 'List',

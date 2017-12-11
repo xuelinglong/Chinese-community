@@ -1,5 +1,9 @@
 <template>
-    <div class="tab">
+    <div class="topics">
+        <!-- v-infinite-scroll="loadMore"
+        infinite-scroll-disabled="loading"
+        infinite-scroll-distance="10" -->
+
         <mt-navbar v-model="selected">
             <mt-tab-item id="all">全部</mt-tab-item>
             <mt-tab-item id="good">精华</mt-tab-item>
@@ -8,19 +12,40 @@
             <mt-tab-item id="ask">问答</mt-tab-item>
             <mt-tab-item id="job">招聘</mt-tab-item>
         </mt-navbar>
-        <v-list :tabName="selected" :subjects="subjects"></v-list>
+        <!-- <v-list :tabName="selected" :subjects="subjects"></v-list> -->
+
+        <mt-tab-container v-model="selected">
+            <mt-tab-container-item id="all">
+                <v-list :tabName="selected" :subjects="subjects"></v-list>
+            </mt-tab-container-item>
+            <mt-tab-container-item id="good">
+                <v-list :tabName="selected" :subjects="subjects"></v-list>
+            </mt-tab-container-item>
+            <mt-tab-container-item id="weex">
+                <v-list :tabName="selected" :subjects="subjects"></v-list>
+            </mt-tab-container-item>
+            <mt-tab-container-item id="share">
+                <v-list :tabName="selected" :subjects="subjects"></v-list>
+            </mt-tab-container-item>
+            <mt-tab-container-item id="ask">
+                <v-list :tabName="selected" :subjects="subjects"></v-list>
+            </mt-tab-container-item>
+            <mt-tab-container-item id="job">
+                <v-list :tabName="selected" :subjects="subjects"></v-list>
+            </mt-tab-container-item>
+        </mt-tab-container>
     </div>
 </template>
 
 <script>
     import { mapState } from 'vuex';
 //    import axios from 'axios';
-    import * as type from './../store/modules/type';
+    import * as type from './../../store/modules/type';
 //  import fetchTopics from './../store/modules/topics';
     import List from './list';
 
     export default {
-        name: 'Tab',
+        name: 'Topics',
         data() {
             return {
                 selected: 'all',
@@ -36,16 +61,9 @@
                 return state.topics.topics.data;
             }
         }),
-        // mounted() {
-        //     axios.get('https://www.vue-js.com/api/v1/topics')
-        //     .then((res) => {
-        //         this.subjects = res.data.data.filter((data) => {
-        //             return data.tab === 'share';
-        //         });
-        //     });
-        // },
         created() {
             this.fetchData();
+            console.log('* FETCH_TOPICS被触发了👩‍❤️‍👩👩‍❤️‍👩👩‍❤️‍👩');
         },
         methods: {
             fetchData(val) {
@@ -74,19 +92,26 @@
             fetch(tab, page, limit) {
                 this.$store.dispatch(type.FETCH_TOPICS, {
                     tab: this.selected,
+                    // tab,
                     page,
                     limit
                 });
+            },
+            loadMore() {
+                this.loading = true;
+                this.page += 1;
+                this.fetch(this.selected, this.page, 20);
+                this.loading = false;
+                console.log('* loadMore被触发了！！');
             }
         }
     };
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-    .tab
+    .topics
         width: 100%
-        height: 50px
-        background: pink
+        height: auto
 
     .mint-tab-item
         border-bottom: 5px solid #f0f8ff
