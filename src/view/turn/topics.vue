@@ -12,9 +12,12 @@
             <mt-tab-item id="ask">问答</mt-tab-item>
             <mt-tab-item id="job">招聘</mt-tab-item>
         </mt-navbar>
-        <!-- <v-list :tabName="selected" :subjects="subjects"></v-list> -->
 
         <mt-tab-container v-model="selected">
+            <!-- v-infinite-scroll="loadMore"
+            infinite-scroll-disabled="loading"
+            infinite-scroll-distance="10" -->
+
             <mt-tab-container-item id="all">
                 <v-list :tabName="selected" :subjects="subjects"></v-list>
             </mt-tab-container-item>
@@ -61,14 +64,23 @@
                 return state.topics.topics.data;
             }
         }),
+        watch: {
+            // 如果 `selected` 发生改变，这个函数就会运行
+            selected: function(newselected) {
+                this.fetchData(this.selected);
+                console.log('* fetchData被触发了👩‍❤️‍👩👩‍❤️‍👩👩‍❤️‍👩');
+            }
+        },
         created() {
-            this.fetchData();
+            this.fetch('all', 0, 20);
+            this.page = 1;
             console.log('* FETCH_TOPICS被触发了👩‍❤️‍👩👩‍❤️‍👩👩‍❤️‍👩');
         },
         methods: {
             fetchData(val) {
+                this.$store.dispatch(type.CLEAR_STATE_DATA);
                 this.page = 1;
-                switch (this.selected) {
+                switch (val) {
                     case 'all':
                         this.fetch('all', 0, 20);
                         break;
@@ -92,7 +104,6 @@
             fetch(tab, page, limit) {
                 this.$store.dispatch(type.FETCH_TOPICS, {
                     tab: this.selected,
-                    // tab,
                     page,
                     limit
                 });
@@ -102,7 +113,7 @@
                 this.page += 1;
                 this.fetch(this.selected, this.page, 20);
                 this.loading = false;
-                console.log('* loadMore被触发了！！');
+                console.log('* loadMore被触发了👩‍❤️‍👩👩‍❤️‍👩👩‍❤️‍👩');
             }
         }
     };

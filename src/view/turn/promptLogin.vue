@@ -20,7 +20,7 @@
 <style lang="stylus" rel="stylesheet/stylus">
     .promptLogin
         width: 100%
-        height: 100%
+        height: 555px
         .img
             width: 100px
             height: 100px

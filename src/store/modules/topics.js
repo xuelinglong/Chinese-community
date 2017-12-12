@@ -18,6 +18,10 @@ const mutations = {
     // },
     [type.FETCH_TOPICS](state, action) {
         state.topics.data = action.data;
+    },
+    [type.CLEAR_STATE_DATA](state) {
+        state.topics.data = [];
+        console.log('* CLEAR_STATE_DATA被触发了👩‍❤️‍👩👩‍❤️‍👩👩‍❤️‍👩');
     }
 };
 
@@ -62,6 +66,9 @@ const actions = {
                 });
             }
         }).catch(err => console.log(err));
+    },
+    [type.CLEAR_STATE_DATA](context) {
+        context.commit(type.CLEAR_STATE_DATA);
     }
 };
 

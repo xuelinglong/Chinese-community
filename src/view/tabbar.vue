@@ -72,4 +72,8 @@
 
     .mint-tabbar > .mint-tab-item.is-selected
         color: #008000
+
+    .mint-tab-container
+        width: 100%
+        height: 100%
 </style>

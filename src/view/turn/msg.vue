@@ -18,7 +18,7 @@
         name: 'Msg',
         data() {
             return {
-                login: '1'
+                login: '0'
             };
         },
         components: {

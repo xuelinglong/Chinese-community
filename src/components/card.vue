@@ -46,16 +46,16 @@
             .img
                 width: 60px
                 height: 60px
-                border-radius: 100px
-                border: 1px solid #000000
+                border-radius: 30px
+                // border: 1px solid #000000
                 position: absolute
                 left: 20px
                 top: 10px
                 bottom: 0
                 img
-                    width: 50px
-                    height: 50px
-                    border-raduis: 100px
+                    width: 60px
+                    height: 60px
+                    border-radius: 30px
             .title
                 width: 55%
                 height: 50px
@@ -66,6 +66,13 @@
                 text-align: left
                 color: #000000
                 // border: 1px solid #000000
+                // display: -webkit-box
+                // -webkit-box-orient: vertical
+                // -webkit-line-clamp: 2
+                line-height: 25px
+                overflow: hidden
+                text-overflow: ellipsis
+                white-space: nowrap
             .label
                 width: 50px
                 height: 20px
