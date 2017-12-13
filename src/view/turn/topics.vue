@@ -36,6 +36,11 @@
             <mt-tab-container-item id="job">
                 <v-list :tabName="selected" :subjects="subjects"></v-list>
             </mt-tab-container-item>
+            
+            <p v-show="loading" class="page-infinite-loading">
+                <mt-spinner type="fading-circle"></mt-spinner>
+                加载中...
+            </p>
         </mt-tab-container>
     </div>
 </template>
@@ -53,7 +58,8 @@
             return {
                 selected: 'all',
                 // subjects: [],
-                page: 0
+                page: 0,
+                loading: false
             };
         },
         components: {
@@ -122,7 +128,6 @@
 <style lang="stylus" rel="stylesheet/stylus">
     .topics
         width: 100%
-        height: auto
 
     .mint-tab-item
         border-bottom: 5px solid #f0f8ff
@@ -134,4 +139,8 @@
         border-bottom: 4px solid green
         color: green
         margin-bottom: 1px
+
+    // .mint-tab-container
+    //     height: 555px
+    //     overflow-y: auto
 </style>

@@ -66,6 +66,7 @@
 <style lang="stylus" rel="stylesheet/stylus">
     .tabbar
         width: 100%
+        height: 100%
 
     .mt-tab-item
         border-top: 0.5px solid #000000
@@ -75,5 +76,5 @@
 
     .mint-tab-container
         width: 100%
-        height: 100%
+        height: 100%        
 </style>

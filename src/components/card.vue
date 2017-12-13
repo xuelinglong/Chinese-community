@@ -1,4 +1,5 @@
 <template>
+<router-link :to="{name: 'Subject', params:{id: subject.id}}">
     <div class="card">
         <div class="msg-bar">
             <div class="img">
@@ -20,6 +21,7 @@
             </div>
         </div>
     </div>
+</router-link>
 </template>
 
 <script>
@@ -105,4 +107,7 @@
         top: 2px
         right: 3px
         bottom: 0
+
+    & > a
+        text-decoration: none
 </style>

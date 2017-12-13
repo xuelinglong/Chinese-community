@@ -19,6 +19,10 @@ const mutations = {
     [type.FETCH_TOPICS](state, action) {
         state.topics.data = action.data;
     },
+    [type.FETCH_TOPICS_SUBJECT](state, action) {
+        state.topics.sub = action.data;
+        console.log('* FETCH_TOPICS_SUBJECT被触发了👩‍❤️‍👩👩‍❤️‍👩👩‍❤️‍👩');
+    },
     [type.CLEAR_STATE_DATA](state) {
         state.topics.data = [];
         console.log('* CLEAR_STATE_DATA被触发了👩‍❤️‍👩👩‍❤️‍👩👩‍❤️‍👩');
@@ -67,6 +71,17 @@ const actions = {
             }
         }).catch(err => console.log(err));
     },
+    [type.FETCH_TOPICS_SUBJECT](context, payload) {
+        axios({
+            method: 'get',
+            url: HOST + 'topic/' + payload.id
+        }).then(res => {
+            let topicSubject = res.data.data;
+            context.commit(type.FETCH_TOPICS_SUBJECT, {
+                data: topicSubject
+            });
+        }).catch(err => console.log(err));
+    },
     [type.CLEAR_STATE_DATA](context) {
         context.commit(type.CLEAR_STATE_DATA);
     }
@@ -75,7 +90,8 @@ const actions = {
 export default {
     state: {
         topics: {
-            data: []
+            data: [],
+            sub: []
         }
     },
     mutations,
