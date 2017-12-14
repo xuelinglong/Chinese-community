@@ -14,16 +14,22 @@
 
 <script>
     import PromptLogin from './promptLogin';
+    import { mapState } from 'vuex';
     export default {
         name: 'Msg',
         data() {
             return {
-                login: '0'
+                // login: '0'
             };
         },
         components: {
             'v-promptLogin': PromptLogin
-        }
+        },
+        computed: mapState({
+            login(state) {
+                return state.user.login;
+            }
+        })
     };
 </script>
 
