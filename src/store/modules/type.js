@@ -7,6 +7,8 @@ export const CLEAR_STATE_DATA = 'CLEAR_STATE_DATA';
 
 // user
 export const FETCH_USER = 'FETCH_USER';
+export const LOGIN_USER = 'LOGIN_USER';
 export const FETCH_USER_DATA = 'FETCH_USER_DATA';
 export const LOGOUT = 'LOGOUT';
+export const CLEAR_USER_DATA = 'CLEAR_USER_DATA';
 export const CHANGE_LOGIN_STATE = 'CHANGE_LOGIN_STATE';

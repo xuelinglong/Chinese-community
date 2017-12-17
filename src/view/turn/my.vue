@@ -15,7 +15,26 @@
 
         <!-- 登录后的样式 -->
         <div class="my-view" v-if="success != false">
-            登录成功
+            <div class="usr-box">
+                <div class="img"><img :src="usr.avatar_url"></div>
+                <div class="msg">
+                    <div class="loginname">{{ usr.loginname }}</div>
+                    <div class="id">ID:123456789</div>
+                </div>
+            </div>
+            <div class="msg-box">
+                <mt-cell title="我收藏的话题" is-link>
+                    <img slot="icon" src="./../../assets/星.png" width="24" height="24">
+                    <span style="color: green">3</span>
+                </mt-cell>
+                <mt-cell title="我参与的话题" is-link>
+                    <img slot="icon" src="./../../assets/评论.png" width="24" height="24">
+                </mt-cell>
+                <mt-cell title="我最近的话题" is-link>
+                    <img slot="icon" src="./../../assets/足迹.png" width="24" height="24">
+                </mt-cell>
+            </div>
+            <div class="logout" @click="logout">退出登录</div>
         </div>
 
     </div>
@@ -30,7 +49,7 @@
         data() {
             return {
                 // login: '0',
-                // accesstoken: '2cf09343-2162-48c8-88aa-bba001aa155d'
+                accesstoken: '2cf09343-2162-48c8-88aa-bba001aa155d'
             };
         },
         // components: {
@@ -40,9 +59,12 @@
             success(state) {
                 return state.user.success;
             },
-            accesstoken(state) {
-                return state.user.accesstoken;
+            usr(state) {
+                return state.user.user.data;
             }
+            // accesstoken(state) {
+            //     return state.user.accesstoken;
+            // }
         }),
         methods: {
             go() {
@@ -50,10 +72,17 @@
                 // this.success = !this.success;
             },
             login() {
+                // this.$store.dispatch(type.LOGIN_USER, {
+                //     accesstoken: this.accesstoken
+                // });
+                // console.log(this.accesstoken);
                 this.$store.dispatch(type.FETCH_USER, {
-                    accesstoken: this.accesstoken
+                    loginname: 'sunshine'
                 });
-                this.dispatch(type.CHANGE_LOGIN_STATE);
+                this.$store.dispatch(type.CHANGE_LOGIN_STATE);
+            },
+            logout() {
+                this.$store.dispatch(type.LOGOUT);
             }
         }
     };
@@ -65,7 +94,7 @@
         height: 100%
         .login-view
             width: 100%
-            height: 555px
+            height: 530px
             background: #f0f0f0
             .accesstoken
                 width: 70%
@@ -107,4 +136,47 @@
                 background: #008000
                 border-radius: 3px
                 border: 1px solid #008000
+        .my-view
+            width: 100%
+            height: 530px
+            overflow: hidden
+            overflow-y: hidden
+            background: #f0f0f0
+            .usr-box
+                width: 100%
+                height: 80px
+                padding: 5px 10px
+                box-sizing: border-box
+                border-top: 15px solid #f0f0f0
+                background: #ffffff
+                .img
+                    width: 50px
+                    height: 50px
+                    float: left
+                .msg
+                    width: 85%
+                    height: 50px
+                    float: right
+                    text-align: left
+                    .loginname
+                        height: 25px
+                        font-size: 1.2rem
+                        padding-left: 10px
+                    .id
+                        height: 25px
+                        font-size: 0.9rem
+                        padding-left: 10px
+            .msg-box
+                width: 100%
+                height: 150px
+                text-align: left
+                border-top: 15px solid #f0f0f0
+                background: #ffffff
+            .logout
+                width: 100%
+                height: 40px
+                display: block
+                font-size: 1.3rem
+                background: #ffffff
+                margin-top: 20px
 </style>
