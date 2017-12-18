@@ -2,7 +2,7 @@
     <!--  此页面为未读消息、发布、我的未登录账号时显示的页面   -->
     <div class="promptLogin">
         <div class="img">
-            <img src="./../../assets/biker.png">
+            <img src="./../../../assets/biker.png">
         </div>
         <div class="message">请登录账号查看！！！</div>
         <div class="button">
@@ -12,8 +12,14 @@
 </template>
 
 <script>
+    // import router from './../../router/index';
     export default {
-        name: 'PromptLogin'
+        name: 'PromptLogin',
+        methods: {
+            // gotoLogin() {
+            //     router.push({ name: 'My' });
+            // }
+        }
     };
 </script>
 

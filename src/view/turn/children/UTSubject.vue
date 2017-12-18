@@ -1,8 +1,8 @@
 <template>
-    <div class="subject">
+    <div class="UTSubject">
         <div class="top-box" fixed>
-            <img class="back" src="./../assets/back.png" @click="back">
-            <img class="share" src="./../assets/star.png">
+            <img class="back" src="./../../../assets/back.png" @click="back">
+            <img class="share" src="./../../../assets/star.png">
         </div>
         <div class="title">{{ subject.title }}</div>
         <div class="author-box">
@@ -15,11 +15,11 @@
 </template>
 
 <script>
-    import router from './../router/index';
     import { mapState } from 'vuex';
-    import * as type from './../store/modules/type';
+    import * as type from './../../../store/modules/type';
+    import router from './../../../router/index';
     export default {
-        name: 'Subject',
+        name: 'UTSubject',
         computed: mapState({
             subject(state) {
                 return state.topics.topics.sub;
@@ -47,10 +47,9 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-    .subject
+    .UTSubject
         width: 100%
         height: 100%
-        overflow-x: hidden
         text-align: left
         .top-box
             width: 100%

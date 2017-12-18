@@ -63,7 +63,23 @@ export default {
     state: {
         topics: {
             data: [],
-            sub: []
+            sub: {
+                author: {
+                    avatar_url: '',
+                    loginname: ''
+                },
+                author_id: '',
+                content: '',
+                create_at: '',
+                id: '',
+                last_reply_at: '',
+                replies: [],
+                reply_count: 0,
+                tab: '',
+                title: '',
+                top: false,
+                visit_count: 0
+            }
         }
     },
     mutations,

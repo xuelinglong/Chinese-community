@@ -12,3 +12,7 @@ export const FETCH_USER_DATA = 'FETCH_USER_DATA';
 export const LOGOUT = 'LOGOUT';
 export const CLEAR_USER_DATA = 'CLEAR_USER_DATA';
 export const CHANGE_LOGIN_STATE = 'CHANGE_LOGIN_STATE';
+
+// usertopics
+export const GET_LIST_DATA = 'GET_LIST_DATA';
+export const CLEAR_LIST_DATA = 'CLEAR_LIST_DATA';

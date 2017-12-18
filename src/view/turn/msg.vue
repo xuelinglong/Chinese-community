@@ -1,19 +1,17 @@
 <template>
     <div class="msg">
-        <!-- 未登录时的样式 -->
-        <div class="msg-view" v-if="login === `0`">
+        <div class="msg-view" v-if="success === false">
             <v-promptLogin></v-promptLogin>
         </div>
 
-        <!-- 登录后的样式 -->
-        <div class="msg-view" v-else-if="login != `0`">
+        <div class="msg-view" v-else-if="success != false">
             I am msg!
         </div>
     </div>
 </template>
 
 <script>
-    import PromptLogin from './promptLogin';
+    import PromptLogin from './children/promptLogin';
     import { mapState } from 'vuex';
     export default {
         name: 'Msg',
@@ -26,8 +24,8 @@
             'v-promptLogin': PromptLogin
         },
         computed: mapState({
-            login(state) {
-                return state.user.login;
+            success(state) {
+                return state.user.success;
             }
         })
     };

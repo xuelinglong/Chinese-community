@@ -1,8 +1,5 @@
 <template>
     <div class="topics">
-        <!-- v-infinite-scroll="loadMore"
-        infinite-scroll-disabled="loading"
-        infinite-scroll-distance="10" -->
 
         <mt-navbar v-model="selected">
             <mt-tab-item id="all">全部</mt-tab-item>
@@ -36,7 +33,7 @@
             <mt-tab-container-item id="job">
                 <v-list :tabName="selected" :subjects="subjects"></v-list>
             </mt-tab-container-item>
-            
+      
             <p v-show="loading" class="page-infinite-loading">
                 <mt-spinner type="fading-circle"></mt-spinner>
                 加载中...
@@ -47,9 +44,7 @@
 
 <script>
     import { mapState } from 'vuex';
-//    import axios from 'axios';
     import * as type from './../../store/modules/type';
-//  import fetchTopics from './../store/modules/topics';
     import List from './list';
 
     export default {
@@ -71,7 +66,6 @@
             }
         }),
         watch: {
-            // 如果 `selected` 发生改变，这个函数就会运行
             selected: function(newselected) {
                 this.fetchData(this.selected);
                 console.log('* fetchData被触发了👩‍❤️‍👩👩‍❤️‍👩👩‍❤️‍👩');
@@ -140,7 +134,8 @@
         color: green
         margin-bottom: 1px
 
-    // .mint-tab-container
-    //     height: 555px
-    //     overflow-y: auto
+    .mint-tab-container
+        height: 555px
+        // padding: 10px
+        overflow-y: auto
 </style>
