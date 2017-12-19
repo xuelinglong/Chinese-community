@@ -40,6 +40,7 @@
 </template>
 
 <script>
+import { Indicator } from 'mint-ui';
 import { mapState } from 'vuex';
 import * as type from './../../store/modules/type';
 export default {
@@ -71,6 +72,8 @@ export default {
             this.$store.dispatch(type.LOGIN_USER, {
                 accesstoken: this.accesstoken
             });
+            Indicator.open();
+            setTimeout(() => Indicator.close(), 100);
         },
         logout() {
             this.$store.dispatch(type.LOGOUT);

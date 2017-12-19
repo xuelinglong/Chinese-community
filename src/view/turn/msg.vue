@@ -5,7 +5,9 @@
         </div>
 
         <div class="msg-view" v-else-if="success != false">
-            I am msg!
+            <div class="title">未读消息(0)</div>
+            <div class="msg-lists">没有消息</div>
+            <div class="title">已读消息</div>
         </div>
     </div>
 </template>
@@ -38,4 +40,18 @@
         .msg-view
             width: 100%
             height: auto
+            .title
+                width: 100%
+                height: 30px
+                background: #EFF2F7
+                box-sizing: border-box
+                text-align: left
+                font-size: 0.9rem
+                padding: 5px 10px
+                border-left: 5px solid #D3DcE6
+            .msg-lists
+                width: 100%
+                min-height: 60px
+                box-sizing: border-box
+                padding-top: 20px
 </style>

@@ -7,6 +7,7 @@ import Msg from '@/view/turn/msg';
 import Subject from '@/components/subject';
 import Usertopics from '@/view/turn/children/usertopics';
 import UTSubject from '@/view/turn/children/UTSubject';
+import Commentaries from '@/view/turn/children/commentaries';
 
 Vue.use(Router);
 
@@ -55,6 +56,11 @@ export default new Router({
       path: '/UTSubject/:id',
       name: 'UTSubject',
       component: UTSubject
+    },
+    {
+      path: '/commentaries',
+      name: 'Commentaries',
+      component: Commentaries
     }
   ]
 });

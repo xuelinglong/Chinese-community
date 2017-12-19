@@ -16,3 +16,6 @@ export const CHANGE_LOGIN_STATE = 'CHANGE_LOGIN_STATE';
 // usertopics
 export const GET_LIST_DATA = 'GET_LIST_DATA';
 export const CLEAR_LIST_DATA = 'CLEAR_LIST_DATA';
+
+// commentaries
+export const STATE_SHOW_COMMDETAILS = 'STATE_SHOW_COMMDETAILS';

@@ -2,6 +2,14 @@
     <div class="subject">
         <div class="top-box" fixed>
             <img class="back" src="./../assets/back.png" @click="back">
+            <router-link :to="{name: 'Commentaries'}">
+            <div class="commentaries">
+                <div class="input">
+                    <span class="word">说点什么吧</span>
+                </div>
+                <img src="./../assets/commentaries.png" class="comm-icon">
+            </div>
+            </router-link>
             <img class="share" src="./../assets/star.png">
         </div>
         <div class="title">{{ subject.title }}</div>
@@ -61,11 +69,35 @@
             .back
                 width: 30px
                 height: 30px
-                margin: 10px 0 0 20px
+                margin: 15px 0 0 20px
+                float: left
+            .commentaries
+                width: 250px
+                height: 60px                
+                float: left
+                display: flex
+                flex-direction: row
+                background: #f0f8ff
+                .input
+                    width: 200px
+                    height: 30px
+                    padding-top: 10px
+                    border: 1px solid #aaaaaa
+                    margin: 10px 0 10px 20px
+                    .word
+                        height: 30px
+                        color: #aaaaaa
+                        margin-top: 7px
+                        font-size: 0.9rem
+                .comm-icon
+                    width: 30px
+                    height: 30px
+                    margin: 15px 0 0 20px
             .share
                 width: 30px
                 height: 30px
-                margin: 10px 0px 0px 250px
+                margin: 15px 0px 0px 20px
+                float: left
         .title
             padding: 10px
             font-size: 1.36rem
