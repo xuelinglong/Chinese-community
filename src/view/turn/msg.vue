@@ -5,7 +5,7 @@
         </div>
 
         <div class="msg-view" v-else-if="success != false">
-            <div class="title">未读消息(0)</div>
+            <div class="title">未读消息({{ msg_count }})</div>
             <div class="msg-lists">没有消息</div>
             <div class="title">已读消息</div>
         </div>
@@ -15,6 +15,7 @@
 <script>
     import PromptLogin from './children/promptLogin';
     import { mapState } from 'vuex';
+    import * as type from './../../store/modules/type';
     export default {
         name: 'Msg',
         data() {
@@ -28,6 +29,9 @@
         computed: mapState({
             success(state) {
                 return state.user.success;
+            },
+            msg_count(state) {
+                return state.message.msg_count;
             }
         })
     };

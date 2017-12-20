@@ -8,8 +8,9 @@
                     <span class="word">说点什么吧</span>
                 </div>
                 <img src="./../../../assets/commentaries.png" class="comm-icon">
+                <img src="./../../../assets/commentaries.png" class="comm-icon">
             </div>
-            <img class="share" src="./../../../assets/star.png">
+            <!-- <img class="star" src="./../../../assets/star.png"> -->
         </div>
     </div>
 </template>
@@ -84,9 +85,9 @@
                     width: 30px
                     height: 30px
                     margin: 15px 0 0 20px
-            .share
-                width: 30px
-                height: 30px
-                margin: 15px 0px 0px 20px
-                float: left
+            // .star
+            //     width: 30px
+            //     height: 30px
+            //     margin: 15px 0px 0px 20px
+            //     float: left
 </style>

@@ -72,9 +72,11 @@
             }
         },
         created() {
-            this.fetch('all', 0, 20);
-            this.page = 1;
-            console.log('* FETCH_TOPICS被触发了👩‍❤️‍👩👩‍❤️‍👩👩‍❤️‍👩');
+            if (this.subjects.length === 0) {
+                this.fetch('all', 0, 20);
+                this.page = 1;
+                console.log('* FETCH_TOPICS被触发了👩‍❤️‍👩👩‍❤️‍👩👩‍❤️‍👩');
+            }
         },
         methods: {
             fetchData(val) {

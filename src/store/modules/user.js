@@ -5,6 +5,7 @@ const HOST = '/api/';
 
 const mutations = {
     [type.LOGIN_USER](state, action) {
+        state.loginname = action.data.loginname;
         state.success = action.data.success;
         state.user.usrArr = action.data;
     },
@@ -16,6 +17,7 @@ const mutations = {
     },
     [type.LOGOUT](state) {
         state.success = false;
+        state.loginname = '';
     },
     [type.CLEAR_USER_DATA](state) {
         state.user.data = [];
@@ -86,6 +88,7 @@ export default {
             recent_topics: []
         },
         success: false,
+        loginname: '',
         accesstoken: '2cf09343-2162-48c8-88aa-bba001aa155d'
     },
     mutations,

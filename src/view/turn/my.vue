@@ -74,6 +74,9 @@ export default {
             });
             Indicator.open();
             setTimeout(() => Indicator.close(), 100);
+            this.$store.dispatch(type.GET_MESSAGE_COUNT, {
+                accesstoken: this.accesstoken
+            });
         },
         logout() {
             this.$store.dispatch(type.LOGOUT);

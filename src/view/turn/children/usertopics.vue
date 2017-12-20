@@ -1,6 +1,6 @@
 <template>
     <div class="usertopics">
-        <div class="top">
+        <div class="top" fixed>
             <img src="./../../../assets/close.png" @click="back">
             <span class="title">{{ this.$route.params.title }}</span>
         </div>
@@ -79,6 +79,7 @@
         .top
             width: 100%
             height: 60px
+            position: fixed
             box-sizing: border-box
             padding: 10px 20px
             background: #008000
@@ -96,7 +97,9 @@
                 box-sizing: border-box
         .list
             width: 100%
-            height: auto
+            height: 600px
+            overflow-y: auto
+            padding-top: 60px
             .list-item
                 width: 100%
                 height: 100px

@@ -10,7 +10,8 @@
                 <img src="./../assets/commentaries.png" class="comm-icon">
             </div>
             </router-link>
-            <img class="share" src="./../assets/star.png">
+            <img class="star" src="./../assets/star.png"  v-show="!this.isCollected"  @click="star">
+            <img class="star" src="./../assets/星.png"  v-show="this.isCollected"  @click="star">
         </div>
         <div class="title">{{ subject.title }}</div>
         <div class="author-box">
@@ -31,6 +32,18 @@
         computed: mapState({
             subject(state) {
                 return state.topics.topics.sub;
+            },
+            accesstoken(state) {
+                return state.user.accesstoken;
+            },
+            success(state) {
+                return state.user.success;
+            },
+            loginname(state) {
+                return state.user.loginname;
+            },
+            isCollected(state) {
+                return state.commentaries.isCollected;
             }
         }),
         watch: {
@@ -40,6 +53,7 @@
         },
         created() {
             this.fetchMsg();
+            console.log(this.$route.params.id);
         },
         methods: {
             back() {
@@ -49,6 +63,26 @@
                 this.$store.dispatch(type.FETCH_TOPICS_SUBJECT, {
                     id: this.$route.params.id
                 });
+            },
+            star() {
+                if (this.success === false) {
+                    router.push({name: 'Home'});
+                } else {
+                    if (this.isCollected) {
+                        this.$store.dispatch(type.DEL_COLLECTED_TOPIC, {
+                            accesstoken: this.accesstoken,
+                            topicid: this.$route.params.id,
+                            loginname: this.loginname
+                        });
+                    } else {
+                        this.$store.dispatch(type.COLLECT_TOPIC, {
+                            accesstoken: this.accesstoken,
+                            topicid: this.$route.params.id,
+                            loginname: this.loginname
+                        });
+                    // this.$store.dispatch(type.CLEAR_STATE_DATA);
+                    }
+                }
             }
         }
     };
@@ -63,8 +97,8 @@
         .top-box
             width: 100%
             height: 60px
-            // position: fixed
-            // margin: -10px 0 0 -10px
+            position: fixed
+            box-sizing: border-box
             background: #f0f8ff
             .back
                 width: 30px
@@ -93,13 +127,14 @@
                     width: 30px
                     height: 30px
                     margin: 15px 0 0 20px
-            .share
+            .star
                 width: 30px
                 height: 30px
                 margin: 15px 0px 0px 20px
                 float: left
         .title
-            padding: 10px
+            overflow-y: auto
+            padding: 80px 10px 10px 10px
             font-size: 1.36rem
             font-weight: bold
             text-align: center

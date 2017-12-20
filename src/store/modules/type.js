@@ -19,3 +19,10 @@ export const CLEAR_LIST_DATA = 'CLEAR_LIST_DATA';
 
 // commentaries
 export const STATE_SHOW_COMMDETAILS = 'STATE_SHOW_COMMDETAILS';
+export const COLLECT_TOPIC = 'COLLECT_TOPIC';
+export const DEL_COLLECTED_TOPIC = 'DEL_COLLECTED_TOPIC';
+
+// message
+export const GET_MESSAGE_COUNT = 'GET_MESSAGE_COUNT';
+export const GET_MESSAGES = 'GET_MESSAGES';
+export const CLEAR_MESSAGE_DATA = 'CLEAR_MESSAGE_DATA';
