@@ -200,6 +200,7 @@ export default {
             height: 40px;
             display: block;
             font-size: 1.3rem;
+            text-align: center
             background: #ffffff;
             margin-top: 20px;
         }

@@ -22,6 +22,10 @@ const mutations = {
     [type.CLEAR_STATE_DATA](state) {
         state.topics.data = [];
         console.log('* CLEAR_STATE_DATA被触发了👩‍❤️‍👩👩‍❤️‍👩👩‍❤️‍👩');
+    },
+    [type.CLEAR_SUB_DATA](state) {
+        state.topics.sub = [];
+        console.log('* CLEAR_SUB_DATA被触发了👩‍❤️‍👩👩‍❤️‍👩👩‍❤️‍👩');
     }
 };
 
@@ -56,6 +60,9 @@ const actions = {
     },
     [type.CLEAR_STATE_DATA](context) {
         context.commit(type.CLEAR_STATE_DATA);
+    },
+    [type.CLEAR_SUB_DATA](context) {
+        context.commit(type.CLEAR_SUB_DATA);
     }
 };
 

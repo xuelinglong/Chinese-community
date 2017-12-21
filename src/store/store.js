@@ -5,6 +5,7 @@ import topics from './modules/topics';
 import user from './modules/user';
 import commentaries from './modules/commentaries';
 import message from './modules/message';
+import push from './modules/push';
 
 Vue.use(Vuex);
 
@@ -13,6 +14,7 @@ export default new Vuex.Store({
         topics,
         user,
         commentaries,
-        message
+        message,
+        push
     }
 });

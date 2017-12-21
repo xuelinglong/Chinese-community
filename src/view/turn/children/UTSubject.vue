@@ -57,6 +57,7 @@
         methods: {
             back() {
                 router.go(-1);
+                this.$store.dispatch(type.CLEAR_SUB_DATA);
             },
             fetchMsg() {
                 this.$store.dispatch(type.FETCH_TOPICS_SUBJECT, {

@@ -8,7 +8,6 @@
                     <span class="word">说点什么吧</span>
                 </div>
                 <img src="./../../../assets/commentaries.png" class="comm-icon">
-                <img src="./../../../assets/commentaries.png" class="comm-icon">
             </div>
             <!-- <img class="star" src="./../../../assets/star.png"> -->
         </div>

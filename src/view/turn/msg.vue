@@ -15,7 +15,7 @@
 <script>
     import PromptLogin from './children/promptLogin';
     import { mapState } from 'vuex';
-    import * as type from './../../store/modules/type';
+    // import * as type from './../../store/modules/type';
     export default {
         name: 'Msg',
         data() {

@@ -53,11 +53,11 @@
         },
         created() {
             this.fetchMsg();
-            console.log(this.$route.params.id);
         },
         methods: {
             back() {
                 router.go(-1);
+                this.$store.dispatch(type.CLEAR_SUB_DATA);
             },
             fetchMsg() {
                 this.$store.dispatch(type.FETCH_TOPICS_SUBJECT, {
@@ -80,7 +80,6 @@
                             topicid: this.$route.params.id,
                             loginname: this.loginname
                         });
-                    // this.$store.dispatch(type.CLEAR_STATE_DATA);
                     }
                 }
             }

@@ -7,23 +7,24 @@
         <div class="push-view" v-else-if="success != false">
             <div class="radio-box">
                 <span class="key">选择模块</span>
-                <select class="value" v-model="selected">
-                    <option disabled value="">请选择</option>
-                    <option>问答</option>
-                    <option>分享</option>
-                    <option>招聘</option>
+                <select class="value" v-model="tab">
+                    <!-- <option disabled value="">请选择</option> -->
+                    <option value="ask">问答</option>
+                    <option value="share">分享</option>
+                    <option value="job">招聘</option>
                 </select>
             </div>
             <div class="radio-box">
                 <span class="key">标题</span>
-                <input class="value" v-model="message" placeholder="10个字符以上">
+                <input class="value" v-model="title" placeholder="10个字符以上">
             </div>
             <div class="radio-box">
-                <div class="edit-button">点击编辑正文</div>
+                <div class="edit-button" @click="showMarkdown">点击编辑正文</div>
             </div>
             <div class="radio-box">
-                <mt-button @click.native="openToastWithIcon" size="large">发布</mt-button>
+                <mt-button @click="push" size="large">发布</mt-button>
             </div>
+            <v-markdown v-show="markdownShow"></v-markdown>
         </div>
     </div>
 </template>
@@ -31,6 +32,7 @@
 <script>
     import { Toast } from 'mint-ui';
     import { mapState } from 'vuex';
+    import * as type from './../../store/modules/type';
     import PromptLogin from './children/promptLogin';
     import Markdown from './children/markdown';
     
@@ -39,8 +41,8 @@
         data() {
             return {
                 // value: ''
-                selected: '',
-                message: ''
+                tab: 'ask',
+                title: []
             };
         },
         components: {
@@ -50,6 +52,18 @@
         computed: mapState({
             success(state) {
                 return state.user.success;
+            },
+            accesstoken(state) {
+                return state.user.accesstoken;
+            },
+            loginname(state) {
+                return state.user.loginname;
+            },
+            markdownShow(state) {
+                return state.push.markdownShow;
+            },
+            contentData(state) {
+                return state.push.contentData;
             }
         }),
         // created() {
@@ -58,9 +72,35 @@
         methods: {
             openToastWithIcon() {
                 Toast({
-                    message: '操作成功',
+                    message: '发布成功',
+                    duration: 1000,
                     iconClass: 'mintui mintui-success'
                 });
+            },
+            openToast() {
+                Toast({
+                        message: '标题必须为10个字符以上！！！',
+                        duration: 1000
+                });
+            },
+            showMarkdown() {
+                this.$store.dispatch(type.CHANGE_MARKDOWNSHOW_STATE);
+            },
+            push() {
+                if (this.title.length > 10) {
+                    this.$store.dispatch(type.PUSH_NEW_TOPIC, {
+                        accesstoken: this.accesstoken,
+                        title: this.title,
+                        tab: this.tab,
+                        content: this.contentData,
+                        loginname: this.loginname
+                    });
+                    this.openToastWithIcon();
+                    this.title = [];
+                } else {
+                    this.openToast();
+                    console.log(this.title.length);
+                }
             }
         }
     };
@@ -72,7 +112,7 @@
         height: 100%
         .push-view
             width: 100%
-            height: auto
+            height: 555px
             .radio-box
                 width: 100%
                 height: auto
