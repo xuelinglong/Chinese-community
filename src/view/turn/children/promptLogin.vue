@@ -6,19 +6,22 @@
         </div>
         <div class="message">请登录账号查看！！！</div>
         <div class="button">
-            <button class="login">登录</button>
+            <button class="login" @click="openToast">登录</button>
         </div>
     </div>
 </template>
 
 <script>
-    // import router from './../../router/index';
+    import { Toast } from 'mint-ui';
     export default {
         name: 'PromptLogin',
         methods: {
-            // gotoLogin() {
-            //     router.push({ name: 'My' });
-            // }
+            openToast() {
+                Toast({
+                        message: '请先登录！！！',
+                        duration: 1000
+                });
+            }
         }
     };
 </script>
@@ -27,6 +30,7 @@
     .promptLogin
         width: 100%
         height: 555px
+        text-align: center
         .img
             width: 100px
             height: 100px

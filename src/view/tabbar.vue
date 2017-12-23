@@ -38,6 +38,8 @@
 </template>
 
 <script>
+    import * as type from './../store/modules/type';
+    import { mapState } from 'vuex';
     import Header from './header';
     import Topics from './turn/topics';
     import Msg from './turn/msg';
@@ -52,6 +54,11 @@
                 selected: 'topics'
             };
         },
+        computed: mapState({
+            style(state) {
+                return state.topics.selected;
+            }
+        }),
         components: {
             // 'v-turn': Turn,
             'v-header': Header,
@@ -59,6 +66,13 @@
             'v-msg': Msg,
             'v-push': Push,
             'v-my': My
+        },
+        methods: {
+            changestyle() {
+                this.$store.dispatch(type.CHANGE_SELECTED, {
+                    selected: this.selected
+                });
+            }
         }
     };
 </script>

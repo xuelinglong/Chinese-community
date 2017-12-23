@@ -24,6 +24,7 @@
 </template>
 
 <script>
+    import { Toast } from 'mint-ui';
     import router from './../router/index';
     import { mapState } from 'vuex';
     import * as type from './../store/modules/type';
@@ -66,7 +67,7 @@
             },
             star() {
                 if (this.success === false) {
-                    router.push({name: 'Home'});
+                    this.openToast();
                 } else {
                     if (this.isCollected) {
                         this.$store.dispatch(type.DEL_COLLECTED_TOPIC, {
@@ -82,6 +83,12 @@
                         });
                     }
                 }
+            },
+            openToast() {
+                Toast({
+                        message: '您还没有登录，不能收藏！',
+                        duration: 1000
+                });
             }
         }
     };

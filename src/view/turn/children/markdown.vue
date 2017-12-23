@@ -16,7 +16,7 @@
                 </div>
             </mt-tab-container-item>
             <mt-tab-container-item id="preview">
-                <div class="preview">{{ this.contentData }}</div>
+                <div class="preview">{{ this.content }}</div>
                 <div class="button-box">
                     <button class="save" @click="save">保存</button>
                     <button class="cancel" @click="back">取消</button>

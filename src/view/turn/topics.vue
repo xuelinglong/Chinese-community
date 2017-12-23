@@ -10,10 +10,10 @@
             <mt-tab-item id="job">招聘</mt-tab-item>
         </mt-navbar>
 
-        <mt-tab-container v-model="selected">
-            <!-- v-infinite-scroll="loadMore"
+        <mt-tab-container v-model="selected"
+            v-infinite-scroll="loadMore"
             infinite-scroll-disabled="loading"
-            infinite-scroll-distance="10" -->
+            infinite-scroll-distance="100">
 
             <mt-tab-container-item id="all">
                 <v-list :tabName="selected" :subjects="subjects"></v-list>
@@ -137,7 +137,6 @@
         margin-bottom: 1px
 
     .mint-tab-container
-        height: 555px
-        // padding: 10px
+        height: 550px
         overflow-y: auto
 </style>

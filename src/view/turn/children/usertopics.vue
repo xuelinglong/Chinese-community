@@ -2,7 +2,7 @@
     <div class="usertopics">
         <div class="top" fixed>
             <img src="./../../../assets/close.png" @click="back">
-            <span class="title">{{ this.$route.params.title }}</span>
+            <span class="title">{{ this.$route.params.title }} ( {{ lists.length }} )</span>
         </div>
         <div class="list">
             <div class="list-item" v-for="list in lists" :key="list.id">

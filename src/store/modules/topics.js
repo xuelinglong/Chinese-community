@@ -26,6 +26,9 @@ const mutations = {
     [type.CLEAR_SUB_DATA](state) {
         state.topics.sub = [];
         console.log('* CLEAR_SUB_DATA被触发了👩‍❤️‍👩👩‍❤️‍👩👩‍❤️‍👩');
+    },
+    [type.CHANGE_SELECTED](state, action) {
+        state.selected = action.selected;
     }
 };
 
@@ -63,6 +66,11 @@ const actions = {
     },
     [type.CLEAR_SUB_DATA](context) {
         context.commit(type.CLEAR_SUB_DATA);
+    },
+    [type.CHANGE_SELECTED](context, payload) {
+        context.commit(type.CHANGE_SELECTED, {
+            selected: payload.selected
+        });
     }
 };
 
@@ -87,7 +95,8 @@ export default {
                 top: false,
                 visit_count: 0
             }
-        }
+        },
+        selected: 'topics'
     },
     mutations,
     actions

@@ -1,7 +1,7 @@
 import * as type from './type';
 
 import axios from 'axios';
-// const HOST = '/api/';
+const HOST = '/api/';
 
 const mutations = {
     [type.STATE_SHOW_COMMDETAILS](state) {
@@ -12,6 +12,9 @@ const mutations = {
     },
     [type.DEL_COLLECTED_TOPIC](state, action) {
         state.isCollected = false;
+    },
+    [type.PUSH_REPLIES](state, action) {
+        state.pushRepliedData = action.data;
     }
 };
 
@@ -50,13 +53,26 @@ const actions = {
         }).catch(err => {
             console.log(err);
         });
+    },
+    [type.PUSH_REPLIES](context, payload) {
+        // const url = HOST + 'topic/' + payload.topicid + '/replies';
+        axios.post(HOST + 'topic/' + payload.topicid + '/replies', {
+            accesstoken: payload.accesstoken,
+            content: payload.content,
+            reply_id: payload.replyid
+        }).then(res => {
+            context.commit(type.PUSH_REPLIES, {
+                data: res.data.data
+            });
+        }).catch(err => console.log(err));
     }
 };
 
 export default {
     state: {
         showDetails: false,
-        isCollected: false
+        isCollected: false,
+        pushRepliedData: []
     },
     mutations,
     actions

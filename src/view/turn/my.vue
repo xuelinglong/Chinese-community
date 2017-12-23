@@ -22,20 +22,19 @@
             <div class="msg-box">
                 <mt-cell title="我收藏的话题" is-link :to="{name: 'Usertopics', params: {title: '我收藏的话题'}}">
                     <img slot="icon" src="./../../assets/星.png" width="24" height="24">
-                    <span style="color: green">0</span>
+                    <span style="color: green">{{ usr.collect_topics.length }}</span>
                 </mt-cell>
                 <mt-cell title="我参与的话题" is-link :to="{name: 'Usertopics', params: {title: '我参与的话题'}}">
                     <img slot="icon" src="./../../assets/评论.png" width="24" height="24">
-                    <span style="color: green">0</span>
+                    <span style="color: green">{{ usr.recent_replies.length }}</span>
                 </mt-cell>
                 <mt-cell title="我最近的话题" is-link :to="{name: 'Usertopics', params: {title: '我最近的话题'}}">
                     <img slot="icon" src="./../../assets/足迹.png" width="24" height="24">
-                    <span style="color: green">0</span>
+                    <span style="color: green">{{ usr.recent_topics.length }}</span>
                 </mt-cell>
             </div>
             <div class="logout" @click="logout">退出登录</div>
         </div>
-
     </div>
 </template>
 
@@ -89,6 +88,7 @@ export default {
 .my {
     width: 100%;
     height: 100%;
+    text-align: center;
 
     .login-view {
         width: 100%;

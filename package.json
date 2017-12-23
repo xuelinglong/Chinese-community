@@ -14,7 +14,6 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "axios": "^0.17.1",
     "mint-ui": "^2.2.12",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
@@ -24,6 +23,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
+    "axios": "^0.16.2",
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",
     "babel-jest": "^21.0.2",
