@@ -32,7 +32,7 @@
         name: 'Subject',
         computed: mapState({
             subject(state) {
-                return state.topics.topics.sub;
+                return state.topics.topics.topicsubject.sub;
             },
             accesstoken(state) {
                 return state.user.accesstoken;
@@ -43,8 +43,11 @@
             loginname(state) {
                 return state.user.loginname;
             },
+            arr(state) {
+                return state.user.user.data.collect_topics;
+            },
             isCollected(state) {
-                return state.commentaries.isCollected;
+                return state.topics.topics.topicsubject.isCollected;
             }
         }),
         watch: {
@@ -53,12 +56,32 @@
             }
         },
         created() {
+            // let topicid = this.$route.params.id;
+            // let arr = this.arr;
+            this.checkCollected(this.arr, this.$route.params.id);
             this.fetchMsg();
         },
         methods: {
             back() {
                 router.go(-1);
                 this.$store.dispatch(type.CLEAR_SUB_DATA);
+            },
+            checkCollected(arr, topicid) {
+                function check(arr, topicid) {
+                    let i = arr.length;
+                    while (i--) {
+                        if (arr[i].id === topicid) {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+
+                if (check(arr, topicid)) {
+                    this.$store.commit(type.COLLECT_TOPIC);
+                } else {
+                    this.$store.commit(type.DEL_COLLECTED_TOPIC);
+                }
             },
             fetchMsg() {
                 this.$store.dispatch(type.FETCH_TOPICS_SUBJECT, {

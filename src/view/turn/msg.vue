@@ -16,7 +16,7 @@
                 <div class="msg-item-t" v-else-if="msgData.length != 0">
                     <div class="msg-item" v-for="subject in msgData.has_read_messages" :key="subject.topic.id">
                         <router-link :to="{name: 'Subject', params:{id: subject.topic.id}}">
-                        <div class="author">来自&nbsp{{ subject.author.loginname }}</div>
+                        <div class="author">来自 {{ subject.author.loginname }}</div>
                         <div class="content" v-html="subject.reply.content"></div>
                         </router-link>
                     </div>
@@ -29,14 +29,8 @@
 <script>
     import PromptLogin from './children/promptLogin';
     import { mapState } from 'vuex';
-    // import * as type from './../../store/modules/type';
     export default {
         name: 'Msg',
-        data() {
-            return {
-                // login: '0'
-            };
-        },
         components: {
             'v-promptLogin': PromptLogin
         },

@@ -16,19 +16,22 @@ const mutations = {
         state.topics.data = action.data;
     },
     [type.FETCH_TOPICS_SUBJECT](state, action) {
-        state.topics.sub = action.data;
-        console.log('* FETCH_TOPICS_SUBJECT被触发了👩‍❤️‍👩👩‍❤️‍👩👩‍❤️‍👩');
+        state.topics.topicsubject.sub = action.data;
     },
     [type.CLEAR_STATE_DATA](state) {
         state.topics.data = [];
-        console.log('* CLEAR_STATE_DATA被触发了👩‍❤️‍👩👩‍❤️‍👩👩‍❤️‍👩');
     },
     [type.CLEAR_SUB_DATA](state) {
-        state.topics.sub = [];
-        console.log('* CLEAR_SUB_DATA被触发了👩‍❤️‍👩👩‍❤️‍👩👩‍❤️‍👩');
+        state.topics.topicsubject.sub = [];
     },
     [type.CHANGE_SELECTED](state, action) {
         state.selected = action.selected;
+    },
+    [type.COLLECT_TOPIC](state) {
+        state.topics.topicsubject.isCollected = true;
+    },
+    [type.DEL_COLLECTED_TOPIC](state) {
+        state.topics.topicsubject.isCollected = false;
     }
 };
 
@@ -71,6 +74,37 @@ const actions = {
         context.commit(type.CHANGE_SELECTED, {
             selected: payload.selected
         });
+    },
+    [type.COLLECT_TOPIC](context, payload) {
+        axios.post('topic/collect', {
+            accesstoken: payload.accesstoken,
+            topic_id: payload.topicid
+        }).then(res => {
+            if (res.data.success) {
+                context.commit(type.COLLECT_TOPIC);
+                context.dispatch(type.FETCH_USER, {
+                    loginname: payload.loginname
+                });
+            }
+        }).catch(err => {
+            console.log(err);
+        });
+    },
+    [type.DEL_COLLECTED_TOPIC](context, payload) {
+        axios.post('topic/de_collect', {
+            accesstoken: payload.accesstoken,
+            topic_id: payload.topicid
+        }).then(res => {
+            if (res.data.success) {
+                context.commit(type.DEL_COLLECTED_TOPIC);
+                // context.dispatch(type.CLEAR_STATE_DATA);
+                context.dispatch(type.FETCH_USER, {
+                    loginname: payload.loginname
+                });
+            }
+        }).catch(err => {
+            console.log(err);
+        });
     }
 };
 
@@ -78,22 +112,25 @@ export default {
     state: {
         topics: {
             data: [],
-            sub: {
-                author: {
-                    avatar_url: '',
-                    loginname: ''
+            topicsubject: {
+                sub: {
+                    author: {
+                        avatar_url: '',
+                        loginname: ''
+                    },
+                    author_id: '',
+                    content: '',
+                    create_at: '',
+                    id: '',
+                    last_reply_at: '',
+                    replies: [],
+                    reply_count: 0,
+                    tab: '',
+                    title: '',
+                    top: false,
+                    visit_count: 0
                 },
-                author_id: '',
-                content: '',
-                create_at: '',
-                id: '',
-                last_reply_at: '',
-                replies: [],
-                reply_count: 0,
-                tab: '',
-                title: '',
-                top: false,
-                visit_count: 0
+                isCollected: false
             }
         },
         selected: 'topics',

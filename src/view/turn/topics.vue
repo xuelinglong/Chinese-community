@@ -70,14 +70,12 @@
         watch: {
             selected: function(newselected) {
                 this.fetchData(this.selected);
-                console.log('* fetchData被触发了👩‍❤️‍👩👩‍❤️‍👩👩‍❤️‍👩');
             }
         },
         created() {
             if (this.subjects.length === 0) {
                 this.fetch('all', 0, 20);
                 this.page = 1;
-                console.log('* FETCH_TOPICS被触发了👩‍❤️‍👩👩‍❤️‍👩👩‍❤️‍👩');
             }
         },
         methods: {
@@ -117,7 +115,6 @@
                 this.page += 1;
                 this.fetch(this.selected, this.page, 20);
                 this.loading = false;
-                console.log('* loadMore被触发了👩‍❤️‍👩👩‍❤️‍👩👩‍❤️‍👩');
             }
         }
     };
