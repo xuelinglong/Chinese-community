@@ -20,12 +20,17 @@
 <style lang="stylus" rel="stylesheet/stylus">
     .header
         width: 100%
-        height: 60px
+        height: 56px
+        position: fixed
+        left: 0
+        top: 0
+        right: 0
+        z-index: 10
         background: #008000
         img
             width: 30px
             height: 30px
-            padding-top: 15px
+            padding-top: 13px
 
     // .mint-header
     //    background-color: #008000

@@ -28,6 +28,9 @@
         computed: mapState({
             accesstoken(state) {
                 return state.user.accesstoken;
+            },
+            loginname(state) {
+                return state.user.loginname;
             }
         }),
         methods: {
@@ -42,13 +45,23 @@
                         accesstoken: this.accesstoken,
                         topicid: this.topicid,
                         content: this.content,
-                        replyid: this.replyid
+                        replyid: this.replyid,
+                        loginname: this.loginname
                     });
+                    this.openToastWithIcon();
+                    this.$store.dispatch(type.STATE_SHOW_COMMDETAILS);
                 }
             },
             openToast() {
                 Toast({
                         message: '评论不能为空！',
+                        duration: 1000
+                });
+            },
+            openToastWithIcon() {
+                Toast({
+                        message: '评论成功',
+                        iconClass: 'mintui mintui-success',
                         duration: 1000
                 });
             }

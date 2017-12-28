@@ -1,11 +1,13 @@
 import * as type from './type';
 
 import axios from 'axios';
-const HOST = '/api/';
 
 const mutations = {
     [type.GET_MESSAGE_COUNT](state, action) {
         state.msg_count = action.data;
+    },
+    [type.GET_MESSAGES](state, action) {
+        state.msgData = action.data;
     },
     [type.CLEAR_MESSAGE_DATA](state, action) {
         state.msg_count = 0;
@@ -15,7 +17,7 @@ const mutations = {
 
 const actions = {
     [type.GET_MESSAGE_COUNT](context, payload) {
-        axios.get(HOST + 'message/count', {
+        axios.get('message/count', {
             params: {
                 accesstoken: payload.accesstoken
             }
@@ -24,6 +26,17 @@ const actions = {
                 data: res.data.data
             });
         });
+    },
+    [type.GET_MESSAGES](context, payload) {
+        axios.get('messages', {
+            params: {
+                accesstoken: payload.accesstoken
+            }
+        }).then(res => {
+            context.commit(type.GET_MESSAGES, {
+                data: res.data.data
+            });
+        }).catch(err => console.log(err));
     }
 };
 

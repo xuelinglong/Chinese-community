@@ -1,7 +1,6 @@
 import * as type from './type';
 
 import axios from 'axios';
-// const HOST = '/api/';
 
 const mutations = {
     [type.CHANGE_MARKDOWNSHOW_STATE](state) {
@@ -32,7 +31,7 @@ const actions = {
         context.commit(type.CLEAR_PUSH_CONTENT);
     },
     [type.PUSH_NEW_TOPIC](context, payload) {
-        axios.post('https://www.vue-js.com/api/v1/topics', {
+        axios.post('topics', {
             accesstoken: payload.accesstoken,
             title: payload.title,
             tab: payload.tab,

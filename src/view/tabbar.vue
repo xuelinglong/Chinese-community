@@ -80,15 +80,24 @@
 <style lang="stylus" rel="stylesheet/stylus">
     .tabbar
         width: 100%
-        height: 100%
-
-    .mt-tab-item
-        border-top: 0.5px solid #000000
+        height: 667px
+        .mint-tab-container
+            width: 100%
+            height: 555px
+            position: relative
+            left: 0
+            top: 56px
+            bottom: 0
+            .mint-tab-container-wrap
+                width: 100%
+                height: 100%
+        .mint-tabbar.is-fixed
+            position: fixed
+            width: 100%
+            height: 56px
+            left: 0
+            bottom: 0
 
     .mint-tabbar > .mint-tab-item.is-selected
-        color: #008000
-
-    .mint-tab-container
-        width: 100%
-        height: 100%        
+        color: #008000 
 </style>

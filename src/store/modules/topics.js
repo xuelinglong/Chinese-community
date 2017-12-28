@@ -1,7 +1,7 @@
 import * as type from './type';
 
 import axios from 'axios';
-const HOST = '/api/';
+// const HOST = '/api/';
 
 // import * as api from './api';
 
@@ -34,7 +34,7 @@ const mutations = {
 
 const actions = {
     [type.FETCH_TOPICS](context, payload) {
-        axios.get(HOST + `topics`, {
+        axios.get(`topics`, {
             params: {
                 tab: payload.tab,
                 page: payload.page,
@@ -53,7 +53,7 @@ const actions = {
     [type.FETCH_TOPICS_SUBJECT](context, payload) {
         axios({
             method: 'get',
-            url: HOST + 'topic/' + payload.id
+            url: 'topic/' + payload.id
         }).then(res => {
             let topicSubject = res.data.data;
             context.commit(type.FETCH_TOPICS_SUBJECT, {
@@ -96,7 +96,9 @@ export default {
                 visit_count: 0
             }
         },
-        selected: 'topics'
+        selected: 'topics',
+        page: 0,
+        loading: false
     },
     mutations,
     actions

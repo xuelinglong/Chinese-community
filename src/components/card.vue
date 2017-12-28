@@ -35,7 +35,6 @@
     .card
         width: 100%
         height: 130px
-        // background: pink
         border-bottom: 5px solid #f0f8ff
         .msg-bar
             width: 100%
@@ -44,12 +43,10 @@
             left: 0
             top: 10px
             bottom: 0
-            // background: #aaaaaa
             .img
                 width: 60px
                 height: 60px
                 border-radius: 30px
-                // border: 1px solid #000000
                 position: absolute
                 left: 20px
                 top: 10px

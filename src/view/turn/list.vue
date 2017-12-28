@@ -3,11 +3,6 @@
         <div class="list-all">
             <v-card v-for="subject in subjects" :subject="subject" :key="subject.id"></v-card>
         </div>
-
-        <!-- <div class="other-list" v-else-if="tabName !== `all`">
-            <v-card v-for="subject in subjects" :subject="subject" :key="subject.id"></v-card>
-        </div> -->
-        <!-- <div class="blank"></div> -->
     </div>
 </template>
 
@@ -16,11 +11,6 @@
 
     export default {
         name: 'List',
-        // data() {
-        //     return {
-        //         subjects: []
-        //     };
-        // },
         components: {
             'v-card': Card
         },

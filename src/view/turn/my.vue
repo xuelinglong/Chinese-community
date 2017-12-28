@@ -76,6 +76,9 @@ export default {
             this.$store.dispatch(type.GET_MESSAGE_COUNT, {
                 accesstoken: this.accesstoken
             });
+            this.$store.dispatch(type.GET_MESSAGES, {
+                accesstoken: this.accesstoken
+            });
         },
         logout() {
             this.$store.dispatch(type.LOGOUT);

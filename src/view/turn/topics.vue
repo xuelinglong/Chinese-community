@@ -1,7 +1,7 @@
 <template>
     <div class="topics">
 
-        <mt-navbar v-model="selected">
+        <mt-navbar v-model="selected" fixed>
             <mt-tab-item id="all">全部</mt-tab-item>
             <mt-tab-item id="good">精华</mt-tab-item>
             <mt-tab-item id="weex">weex</mt-tab-item>
@@ -13,7 +13,7 @@
         <mt-tab-container v-model="selected"
             v-infinite-scroll="loadMore"
             infinite-scroll-disabled="loading"
-            infinite-scroll-distance="100">
+            infinite-scroll-distance="50">
 
             <mt-tab-container-item id="all">
                 <v-list :tabName="selected" :subjects="subjects"></v-list>
@@ -33,12 +33,14 @@
             <mt-tab-container-item id="job">
                 <v-list :tabName="selected" :subjects="subjects"></v-list>
             </mt-tab-container-item>
-      
+
             <p v-show="loading" class="page-infinite-loading">
                 <mt-spinner type="fading-circle"></mt-spinner>
                 加载中...
             </p>
+            
         </mt-tab-container>
+
     </div>
 </template>
 
@@ -124,9 +126,22 @@
 <style lang="stylus" rel="stylesheet/stylus">
     .topics
         width: 100%
-
-    .mint-tab-item
-        border-bottom: 5px solid #f0f8ff
+        height: 555px
+        .mint-navbar.is-fixed
+            width: 100%
+            height: 55px
+            position: fixed
+            top: 55px
+            left: 0
+            right: 0
+        .mint-tab-container
+            width: 100%
+            height: 500px
+            position: fixed
+            top: 110px
+            left: 0
+            right: 0
+            overflow-y: auto
 
     .mint-tab-item-label
         font-size: 16px
@@ -135,8 +150,6 @@
         border-bottom: 4px solid green
         color: green
         margin-bottom: 1px
-
-    .mint-tab-container
-        height: 550px
-        overflow-y: auto
+    .mint-tab-item
+        border-bottom: 5px solid #f0f8ff
 </style>

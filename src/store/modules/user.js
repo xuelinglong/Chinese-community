@@ -1,7 +1,7 @@
 import * as type from './type';
 
 import axios from 'axios';
-const HOST = '/api/';
+// const HOST = '/api/';
 
 const mutations = {
     [type.LOGIN_USER](state, action) {
@@ -40,7 +40,7 @@ const actions = {
     // accesstoken   String      用户的 accessToken
     // topic_id      String      被收藏的主题id
     [type.LOGIN_USER](context) {
-        axios.post('https://www.vue-js.com/api/v1/accesstoken', {
+        axios.post('accesstoken', {
             accesstoken: '2cf09343-2162-48c8-88aa-bba001aa155d'
         }).then(res => {
             context.commit(type.LOGIN_USER, {
@@ -52,7 +52,7 @@ const actions = {
         }).catch(err => console.log(err));
     },
     [type.FETCH_USER](context, payload) {
-        axios.get(HOST + 'user/' + payload.loginname, {
+        axios.get('user/' + payload.loginname, {
             params: {
                 loginname: payload.loginname
             }
@@ -69,6 +69,7 @@ const actions = {
     [type.LOGOUT](context) {
         context.commit(type.LOGOUT);
         context.commit(type.CLEAR_USER_DATA);
+        context.commit(type.CLEAR_MESSAGE_DATA);
     },
     [type.GET_LIST_DATA](context) {
         context.commit(type.GET_LIST_DATA);
