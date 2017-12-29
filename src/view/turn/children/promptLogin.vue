@@ -12,10 +12,17 @@
 </template>
 
 <script>
+    // import * as type from './../../../store/modules/type';
+    // import { mapState } from 'vuex';
     import { Toast } from 'mint-ui';
     export default {
         name: 'PromptLogin',
         methods: {
+            // change() {
+            //     this.$store.commit(type.CHANGE_TABBAR_STATE, {
+            //         type: 'my'
+            //     });
+            // },
             openToast() {
                 Toast({
                         message: '请先登录！！！',

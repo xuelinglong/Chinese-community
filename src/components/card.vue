@@ -11,7 +11,7 @@
 
         <div class="icon-bar">
             <div class="left-bar">
-                {{ subject.author.loginname }} &nbsp {{ subject.tab }}
+                {{ subject.author.loginname }} &nbsp {{ subject.create_at | filterTime }}
             </div>
 
             <div class="right-bar">

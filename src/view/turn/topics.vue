@@ -11,10 +11,8 @@
         </mt-navbar>
 
         <mt-tab-container v-model="selected"
-            v-infinite-scroll="loadMore"
-            infinite-scroll-disabled="loading"
-            infinite-scroll-distance="50">
-
+            v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="70">
+            
             <mt-tab-container-item id="all">
                 <v-list :tabName="selected" :subjects="subjects"></v-list>
             </mt-tab-container-item>
@@ -34,17 +32,13 @@
                 <v-list :tabName="selected" :subjects="subjects"></v-list>
             </mt-tab-container-item>
 
-            <p v-show="loading" class="page-infinite-loading">
-                <mt-spinner type="fading-circle"></mt-spinner>
-                加载中...
-            </p>
-            
         </mt-tab-container>
 
     </div>
 </template>
 
 <script>
+    import { Indicator } from 'mint-ui';
     import { mapState } from 'vuex';
     import * as type from './../../store/modules/type';
     import List from './list';
@@ -56,7 +50,8 @@
                 selected: 'all',
                 // subjects: [],
                 page: 0,
-                loading: false
+                // loading: false
+                allLoaded: false
             };
         },
         components: {
@@ -69,13 +64,23 @@
         }),
         watch: {
             selected: function(newselected) {
+                Indicator.open({
+                    text: '加载中...',
+                    spinnerType: 'fading-circle'
+                });
                 this.fetchData(this.selected);
+                setTimeout(() => Indicator.close(), 300);
             }
         },
         created() {
             if (this.subjects.length === 0) {
+                Indicator.open({
+                    text: '加载中...',
+                    spinnerType: 'fading-circle'
+                });
                 this.fetch('all', 0, 20);
                 this.page = 1;
+                setTimeout(() => Indicator.close(), 300);
             }
         },
         methods: {
@@ -111,10 +116,19 @@
                 });
             },
             loadMore() {
-                this.loading = true;
-                this.page += 1;
-                this.fetch(this.selected, this.page, 20);
-                this.loading = false;
+                if (this.subjects.length !== 0) {
+                    Indicator.open({
+                        text: '加载中...',
+                        spinnerType: 'fading-circle'
+                    });
+                    this.loading = true;
+                    setTimeout(() => {
+                        this.page += 1;
+                        this.fetch(this.selected, this.page, 20);
+                        this.loading = false;
+                        Indicator.close();
+                    }, 1000);
+                }
             }
         }
     };
@@ -149,4 +163,8 @@
         margin-bottom: 1px
     .mint-tab-item
         border-bottom: 5px solid #f0f8ff
+
+    .page-infinite-loading
+        width: 100%
+        height: 50px
 </style>

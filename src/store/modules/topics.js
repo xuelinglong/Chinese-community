@@ -24,9 +24,6 @@ const mutations = {
     [type.CLEAR_SUB_DATA](state) {
         state.topics.topicsubject.sub = [];
     },
-    [type.CHANGE_SELECTED](state, action) {
-        state.selected = action.selected;
-    },
     [type.COLLECT_TOPIC](state) {
         state.topics.topicsubject.isCollected = true;
     },
@@ -69,11 +66,6 @@ const actions = {
     },
     [type.CLEAR_SUB_DATA](context) {
         context.commit(type.CLEAR_SUB_DATA);
-    },
-    [type.CHANGE_SELECTED](context, payload) {
-        context.commit(type.CHANGE_SELECTED, {
-            selected: payload.selected
-        });
     },
     [type.COLLECT_TOPIC](context, payload) {
         axios.post('topic/collect', {
@@ -133,7 +125,6 @@ export default {
                 isCollected: false
             }
         },
-        selected: 'topics',
         page: 0,
         loading: false
     },

@@ -38,7 +38,7 @@
 </template>
 
 <script>
-    import * as type from './../store/modules/type';
+    // import * as type from './../store/modules/type';
     import { mapState } from 'vuex';
     import Header from './header';
     import Topics from './turn/topics';
@@ -58,6 +58,9 @@
             style(state) {
                 return state.topics.selected;
             }
+            // selected(state) {
+            //     return state.tabbar.tabState;
+            // }
         }),
         components: {
             // 'v-turn': Turn,
@@ -66,14 +69,19 @@
             'v-msg': Msg,
             'v-push': Push,
             'v-my': My
-        },
-        methods: {
-            changestyle() {
-                this.$store.dispatch(type.CHANGE_SELECTED, {
-                    selected: this.selected
-                });
-            }
         }
+        // watch: {
+        //     selected: function(newselected) {
+        //         this.change();
+        //     }
+        // },
+        // methods: {
+        //     change() {
+        //         this.$store.commit(type.CHANGE_TABBAR_STATE, {
+        //             type: this.selected
+        //         });
+        //     }
+        // }
     };
 </script>
 
@@ -84,7 +92,7 @@
         .mint-tab-container
             width: 100%
             height: 555px
-            position: relative
+            position: fixed
             left: 0
             top: 56px
             bottom: 0
@@ -97,6 +105,8 @@
             height: 56px
             left: 0
             bottom: 0
+            .mint-tab-item
+                border-bottom: 0px
 
     .mint-tabbar > .mint-tab-item.is-selected
         color: #008000 

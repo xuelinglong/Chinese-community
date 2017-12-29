@@ -17,7 +17,7 @@
         <div class="author-box">
             <img :src="subject.author.avatar_url">
             <span class="name">{{ subject.author.loginname }}</span>
-            <span class="time">时间</span>
+            <span class="time">{{ subject.create_at | filterTime }}</span>
         </div>
         <div class="content" v-html="subject.content"></div>
     </div>
@@ -56,10 +56,12 @@
             }
         },
         created() {
-            // let topicid = this.$route.params.id;
-            // let arr = this.arr;
-            this.checkCollected(this.arr, this.$route.params.id);
-            this.fetchMsg();
+            if (this.success) {
+                this.checkCollected(this.arr, this.$route.params.id);
+                this.fetchMsg();
+            } else {
+                this.fetchMsg();
+            }
         },
         methods: {
             back() {

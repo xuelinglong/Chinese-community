@@ -6,7 +6,7 @@
             </div>
             <div class="author-msg">
                 <span class="name">{{ subject.author.loginname }}</span>
-                <span class="time">{{ subject.create_at }}</span>
+                <span class="time">{{ subject.create_at | filterTime }}</span>
             </div>
             <div class="icon-zan" @click="ups">
                 <img class="zan" src="./../assets/zan.png">
@@ -37,7 +37,7 @@
                 return state.user.accesstoken;
             },
             topicid(state) {
-                return state.topics.topics.sub.id;
+                return state.topics.topics.topicsubject.sub.id;
             }
         }),
         methods: {

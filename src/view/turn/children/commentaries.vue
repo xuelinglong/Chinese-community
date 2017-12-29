@@ -49,10 +49,10 @@
                 return state.user.accesstoken;
             },
             topicid(state) {
-                return state.topics.topics.sub.id;
+                return state.topics.topics.topicsubject.sub.id;
             },
             replies(state) {
-                return state.topics.topics.sub.replies;
+                return state.topics.topics.topicsubject.sub.replies;
             }
         }),
         methods: {

@@ -17,6 +17,7 @@
                     <div class="msg-item" v-for="subject in msgData.has_read_messages" :key="subject.topic.id">
                         <router-link :to="{name: 'Subject', params:{id: subject.topic.id}}">
                         <div class="author">来自 {{ subject.author.loginname }}</div>
+                        <div class="time">{{ subject.reply.create_at | filterTime }}</div>
                         <div class="content" v-html="subject.reply.content"></div>
                         </router-link>
                     </div>
@@ -91,13 +92,23 @@
                         & > a
                             text-decoration: none
                             .author
-                                width: 100%
+                                width: 70%
                                 height: 30px
+                                float: left
+                                text-align: left
+                                font-size: 1.2rem
+                                color: #aaaaaa
+                            .time
+                                width: 30%
+                                height: 30px
+                                float: right
+                                text-align: right
                                 font-size: 1.2rem
                                 color: #aaaaaa
                             .content
                                 width: 100%
                                 min-height: 60px
                                 font-size: 1.0rem
+                                text-align: left
                                 color: #aaaaaa
 </style>
