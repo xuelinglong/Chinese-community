@@ -22,7 +22,7 @@ const mutations = {
         state.topics.data = [];
     },
     [type.CLEAR_SUB_DATA](state) {
-        state.topics.topicsubject.sub = [];
+        state.topics.topicsubject.sub = {};
     },
     [type.COLLECT_TOPIC](state) {
         state.topics.topicsubject.isCollected = true;

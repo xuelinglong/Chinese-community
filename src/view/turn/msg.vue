@@ -12,8 +12,8 @@
             </div>
             <div class="title">已读消息</div>
             <div class="msg-lists">
-                <div class="msg-item-f" v-if="msgData.length === 0">没有消息</div>
-                <div class="msg-item-t" v-else-if="msgData.length != 0">
+                <div class="msg-item-f" v-if="HAS_READ_MESSAGE_COUNT === 0">没有消息</div>
+                <div class="msg-item-t" v-else-if="HAS_READ_MESSAGE_COUNT != 0">
                     <div class="msg-item" v-for="subject in msgData.has_read_messages" :key="subject.topic.id">
                         <router-link :to="{name: 'Subject', params:{id: subject.topic.id}}">
                         <div class="author">来自 {{ subject.author.loginname }}</div>
@@ -29,23 +29,29 @@
 
 <script>
     import PromptLogin from './children/promptLogin';
-    import { mapState } from 'vuex';
+    import { mapState, mapGetters } from 'vuex';
     export default {
         name: 'Msg',
         components: {
             'v-promptLogin': PromptLogin
         },
-        computed: mapState({
-            success(state) {
-                return state.user.success;
-            },
-            msg_count(state) {
-                return state.message.msg_count;
-            },
-            msgData(state) {
-                return state.message.msgData;
-            }
-        })
+        computed: {
+            ...mapState({
+                success(state) {
+                    return state.user.success;
+                },
+                msg_count(state) {
+                    return state.message.msg_count;
+                },
+                msgData(state) {
+                    return state.message.msgData;
+                }
+            }),
+            ...mapGetters([
+                'HAS_NOT_READ_MESSAGE_COUNT',
+                'HAS_READ_MESSAGE_COUNT'
+            ])
+        }
     };
 </script>
 

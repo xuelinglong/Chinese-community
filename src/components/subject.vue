@@ -30,6 +30,27 @@
     import * as type from './../store/modules/type';
     export default {
         name: 'Subject',
+        // data() {
+        //     return {
+        //         subject: {
+        //             author: {
+        //                 avatar_url: '',
+        //                 loginname: ''
+        //             },
+        //             author_id: '',
+        //             content: '',
+        //             create_at: '',
+        //             id: '',
+        //             last_reply_at: '',
+        //             replies: [],
+        //             reply_count: 0,
+        //             tab: '',
+        //             title: '',
+        //             top: false,
+        //             visit_count: 0
+        //         }
+        //     };
+        // },
         computed: mapState({
             subject(state) {
                 return state.topics.topics.topicsubject.sub;

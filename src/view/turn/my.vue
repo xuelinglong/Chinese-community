@@ -22,15 +22,15 @@
             <div class="msg-box">
                 <mt-cell title="我收藏的话题" is-link :to="{name: 'Usertopics', params: {title: '我收藏的话题'}}">
                     <img slot="icon" src="./../../assets/星.png" width="24" height="24">
-                    <span style="color: green">{{ usr.collect_topics.length }}</span>
+                    <span style="color: green">{{ COLLECT_TOPICS }}</span>
                 </mt-cell>
                 <mt-cell title="我参与的话题" is-link :to="{name: 'Usertopics', params: {title: '我参与的话题'}}">
                     <img slot="icon" src="./../../assets/评论.png" width="24" height="24">
-                    <span style="color: green">{{ usr.recent_replies.length }}</span>
+                    <span style="color: green">{{ RECENT_REPLIES }}</span>
                 </mt-cell>
                 <mt-cell title="我最近的话题" is-link :to="{name: 'Usertopics', params: {title: '我最近的话题'}}">
                     <img slot="icon" src="./../../assets/足迹.png" width="24" height="24">
-                    <span style="color: green">{{ usr.recent_topics.length }}</span>
+                    <span style="color: green">{{ RECENT_TOPICS }}</span>
                 </mt-cell>
             </div>
             <div class="logout" @click="logout">退出登录</div>
@@ -40,7 +40,7 @@
 
 <script>
 import { Indicator } from 'mint-ui';
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 import * as type from './../../store/modules/type';
 export default {
     name: 'My',
@@ -49,20 +49,27 @@ export default {
             // lists: []
         };
     },
-    computed: mapState({
-        success(state) {
-            return state.user.success;
-        },
-        USRARR(state) {
-            return state.user.user.usrArr;
-        },
-        usr(state) {
-            return state.user.user.data;
-        },
-        accesstoken(state) {
-            return state.user.accesstoken;
-        }
-    }),
+    computed: {
+        ...mapState({
+            success(state) {
+                return state.user.success;
+            },
+            USRARR(state) {
+                return state.user.user.usrArr;
+            },
+            usr(state) {
+                return state.user.user.data;
+            },
+            accesstoken(state) {
+                return state.user.accesstoken;
+            }
+        }),
+        ...mapGetters([
+            'COLLECT_TOPICS',
+            'RECENT_REPLIES',
+            'RECENT_TOPICS'
+        ])
+    },
     methods: {
         go() {
             this.login();

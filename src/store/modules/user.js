@@ -35,6 +35,33 @@ const mutations = {
     }
 };
 
+const getters = {
+    [type.COLLECT_TOPICS](state) {
+        let arr = state.user.data.collect_topics;
+        if (arr) {
+            return arr.length;
+        } else {
+            return 0;
+        }
+    },
+    [type.RECENT_REPLIES](state) {
+        let arr = state.user.data.recent_replies;
+        if (arr) {
+            return arr.length;
+        } else {
+            return 0;
+        }
+    },
+    [type.RECENT_TOPICS](state) {
+        let arr = state.user.data.recent_topics;
+        if (arr) {
+            return arr.length;
+        } else {
+            return 0;
+        }
+    }
+};
+
 const actions = {
     // 接收 post 参数
     // accesstoken   String      用户的 accessToken
@@ -93,5 +120,6 @@ export default {
         accesstoken: '2cf09343-2162-48c8-88aa-bba001aa155d'
     },
     mutations,
+    getters,
     actions
 };
