@@ -1,6 +1,5 @@
 <template>
     <div class="tabbar">
-        <v-header></v-header>
         <mt-tab-container v-model="selected">
             <mt-tab-container-item id="topics">
                 <v-topics></v-topics>
@@ -38,14 +37,11 @@
 </template>
 
 <script>
-    // import * as type from './../store/modules/type';
     import { mapState } from 'vuex';
-    import Header from './header';
     import Topics from './turn/topics';
     import Msg from './turn/msg';
     import Push from './turn/push';
     import My from './turn/my';
-    // import Turn from './turn/turn';
 
     export default {
         name: 'tabbar',
@@ -58,43 +54,28 @@
             style(state) {
                 return state.topics.selected;
             }
-            // selected(state) {
-            //     return state.tabbar.tabState;
-            // }
         }),
         components: {
-            // 'v-turn': Turn,
-            'v-header': Header,
             'v-topics': Topics,
             'v-msg': Msg,
             'v-push': Push,
             'v-my': My
         }
-        // watch: {
-        //     selected: function(newselected) {
-        //         this.change();
-        //     }
-        // },
-        // methods: {
-        //     change() {
-        //         this.$store.commit(type.CHANGE_TABBAR_STATE, {
-        //             type: this.selected
-        //         });
-        //     }
-        // }
     };
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
     .tabbar
         width: 100%
-        height: 667px
+        height: 100%
+        display: flex
         .mint-tab-container
+            flex: 1
             width: 100%
-            height: 555px
+            height: auto
             position: fixed
             left: 0
-            top: 56px
+            top: 0
             bottom: 0
             .mint-tab-container-wrap
                 width: 100%

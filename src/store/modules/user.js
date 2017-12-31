@@ -1,7 +1,6 @@
 import * as type from './type';
 
 import axios from 'axios';
-// const HOST = '/api/';
 
 const mutations = {
     [type.LOGIN_USER](state, action) {

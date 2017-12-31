@@ -6,7 +6,7 @@
         </div>
         <div class="list">
             <div class="list-item" v-for="list in lists" :key="list.id">
-                <router-link :to="{name: 'UTSubject', params:{id: list.id}}">
+                <router-link :to="{name: 'Subject', params:{id: list.id}}">
                 <div class="img">
                     <img :src="list.author.avatar_url">
                 </div>

@@ -1,9 +1,6 @@
 import * as type from './type';
 
 import axios from 'axios';
-// const HOST = '/api/';
-
-// import * as api from './api';
 
 // 接收 get 参数
 // page     Number      页数

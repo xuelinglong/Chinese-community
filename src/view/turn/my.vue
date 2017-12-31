@@ -1,5 +1,6 @@
 <template>
     <div class="my">
+        <v-header></v-header>
         <div class="login-view" v-if="success === false">
             <div class="accesstoken">
                 <img src="./../../assets/锁.png">
@@ -42,12 +43,16 @@
 import { Indicator } from 'mint-ui';
 import { mapState, mapGetters } from 'vuex';
 import * as type from './../../store/modules/type';
+import Header from './../header';
 export default {
     name: 'My',
     data() {
         return {
             // lists: []
         };
+    },
+    components: {
+        'v-header': Header
     },
     computed: {
         ...mapState({
@@ -98,11 +103,15 @@ export default {
 .my {
     width: 100%;
     height: 100%;
+    display: flex;
     text-align: center;
 
     .login-view {
+        flex: 1
         width: 100%;
-        height: 555px;
+        position: relative
+        top: 56px
+        left: 0
         background: #f0f0f0;
 
         .accesstoken {
@@ -111,7 +120,7 @@ export default {
             display: flex;
             flex-direction: row;
             position: absolute;
-            top: 50px;
+            top: 56px;
             left: 15%;
 
             img {
@@ -157,8 +166,12 @@ export default {
     }
 
     .my-view {
+        flex: 1
         width: 100%;
-        height: 555px;
+        // height: 555px;
+        position: relative
+        top: 56px
+        left: 0
         overflow: hidden;
         overflow-y: hidden;
         background: #f0f0f0;
@@ -181,18 +194,26 @@ export default {
                 width: 85%;
                 height: 50px;
                 float: right;
+                display: flex
+                flex-direction: column;
                 text-align: left;
 
                 .loginname {
+                    width: 100%;
                     height: 25px;
+                    flex: 1;
                     font-size: 1.2rem;
                     padding-left: 10px;
+                    box-sizing: border-box;
                 }
 
                 .id {
+                    width: 100%;
                     height: 25px;
+                    flex: 1;
                     font-size: 0.9rem;
                     padding-left: 10px;
+                    box-sizing: border-box;
                 }
             }
         }

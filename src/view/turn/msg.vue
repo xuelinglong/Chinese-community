@@ -1,5 +1,6 @@
 <template>
     <div class="msg">
+        <v-header></v-header>
         <div class="msg-view" v-if="success === false">
             <v-promptLogin></v-promptLogin>
         </div>
@@ -30,10 +31,12 @@
 <script>
     import PromptLogin from './children/promptLogin';
     import { mapState, mapGetters } from 'vuex';
+    import Header from './../header';
     export default {
         name: 'Msg',
         components: {
-            'v-promptLogin': PromptLogin
+            'v-promptLogin': PromptLogin,
+            'v-header': Header
         },
         computed: {
             ...mapState({
@@ -59,9 +62,13 @@
     .msg
         width: 100%
         height: 100%
+        display: flex
         .msg-view
+            flex: 1
             width: 100%
-            height: 100%
+            position: relative
+            top: 56px
+            left: 0
             .title
                 width: 100%
                 height: 30px

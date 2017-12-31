@@ -19,10 +19,8 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-    .list
+    .list {
         width: 100%
         height: auto
-        // .blank
-        //     width: 100%
-        //     height: 100px
+    }
 </style>

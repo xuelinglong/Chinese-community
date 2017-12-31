@@ -73,16 +73,17 @@
         height: 100%
         position: fixed
         left: 0
-        top: 0
+        top: 56px
+        bottom: 56px
         z-index: 20
-        background: #f0f0f0
+        // background: #f0f0f0
         .mint-navbar
-            height: 60px
+            height: 55px
         .mint-tab-container
             position: relative
             top: 0
             left: 0
-            height: 100%
+            height: 500px
             background-color: #ffffff
             .mint-tab-container-item
                 width: 100%
@@ -90,7 +91,7 @@
                 text-align: left
                 .edit
                     width: 100%
-                    height: 530px
+                    height: 400px
                     padding: 20px
                     box-sizing: border-box
                     background: #ECF0F1
@@ -105,7 +106,7 @@
                         background: #ECF0F1
                 .preview
                     width: 100%
-                    height: 530px
+                    height: 400px
                     padding: 20px
                     box-sizing: border-box
                     background: #ECF0F1

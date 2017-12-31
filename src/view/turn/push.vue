@@ -1,5 +1,6 @@
 <template>
     <div class="push">
+        <v-header></v-header>
         <div class="push-view" v-if="success === false">
             <v-promptLogin></v-promptLogin>
         </div>
@@ -33,6 +34,7 @@
     import { Toast } from 'mint-ui';
     import { mapState } from 'vuex';
     import * as type from './../../store/modules/type';
+    import Header from './../header';
     import PromptLogin from './children/promptLogin';
     import Markdown from './children/markdown';
     
@@ -46,6 +48,7 @@
             };
         },
         components: {
+            'v-header': Header,
             'v-promptLogin': PromptLogin,
             'v-markdown': Markdown
         },
@@ -110,9 +113,14 @@
     .push
         width: 100%
         height: 100%
+        display: flex
         .push-view
+            flex: 1
             width: 100%
-            height: 555px
+            position: relative
+            top: 56px
+            left: 0
+            bottom: 56px
             .radio-box
                 width: 100%
                 height: auto

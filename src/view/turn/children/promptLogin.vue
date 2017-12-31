@@ -1,5 +1,4 @@
 <template>
-    <!--  此页面为未读消息、发布、我的未登录账号时显示的页面   -->
     <div class="promptLogin">
         <div class="img">
             <img src="./../../../assets/biker.png">
@@ -12,17 +11,10 @@
 </template>
 
 <script>
-    // import * as type from './../../../store/modules/type';
-    // import { mapState } from 'vuex';
     import { Toast } from 'mint-ui';
     export default {
         name: 'PromptLogin',
         methods: {
-            // change() {
-            //     this.$store.commit(type.CHANGE_TABBAR_STATE, {
-            //         type: 'my'
-            //     });
-            // },
             openToast() {
                 Toast({
                         message: '请先登录！！！',
