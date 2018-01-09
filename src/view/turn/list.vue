@@ -7,20 +7,19 @@
 </template>
 
 <script>
-    import Card from './../../components/card';
+import Card from './../../components/card'
 
-    export default {
-        name: 'List',
-        components: {
-            'v-card': Card
-        },
-        props: ['tabName', 'subjects']
-    };
+export default {
+  name: 'List',
+  components: {
+    'v-card': Card
+  },
+  props: ['tabName', 'subjects']
+}
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-    .list {
-        width: 100%
-        height: auto
-    }
+.list
+  width 100%
+  height auto
 </style>
