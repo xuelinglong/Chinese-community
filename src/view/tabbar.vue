@@ -42,12 +42,18 @@ import Topics from './turn/topics'
 import Msg from './turn/msg'
 import Push from './turn/push'
 import My from './turn/my'
+let selectedItemName = 'topics'
 
 export default {
   name: 'tabbar',
   data () {
     return {
-      selected: 'topics'
+      selected: selectedItemName
+    }
+  },
+  watch: {
+    selected: function (val, oldVal) {
+      selectedItemName = val
     }
   },
   computed: mapState({

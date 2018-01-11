@@ -45,12 +45,13 @@ import { mapState } from 'vuex'
 import * as type from './../../store/modules/type'
 import Header from './../header'
 import List from './list'
+let selectedItemName = 'all'
 
 export default {
   name: 'Topics',
   data () {
     return {
-      selected: 'all',
+      selected: selectedItemName,
       // subjects: [],
       page: 0,
       loading: false,
@@ -68,6 +69,7 @@ export default {
   }),
   watch: {
     selected: function (newselected) {
+      selectedItemName = newselected
       Indicator.open({
         text: '加载中...',
         spinnerType: 'fading-circle'
