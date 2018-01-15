@@ -23,7 +23,7 @@
                 <div class="edit-button" @click="showMarkdown">点击编辑正文</div>
             </div>
             <div class="radio-box">
-                <mt-button @click="push" size="large">发布</mt-button>
+                <mt-button @click="push" size="small">发布</mt-button>
             </div>
             <v-markdown v-show="markdownShow"></v-markdown>
         </div>
@@ -129,18 +129,23 @@ export default {
       text-align left
       box-sizing border-box
       padding 20px 5% 0px 5%
+      display flex
+      flex-direction column
 
       .key
+        flex: 1
         width 90%
         height 20px
         font-size 0.8rem
         color #aaaaaa
 
       .value
+        flex 1
         width 90%
         height 30px
         margin-top 10px
         border-radius 2px
+        box-sizing border-box
         border 1px solid #aaaaaa
 
       .edit-button
@@ -154,17 +159,10 @@ export default {
         background #EFF2F7
         border 1px solid #aaaaaa
 
-      .posted
-        width 20%
-        height 30px
-        margin 20px 0 0 40%
-        text-align center
-        // border: 1px solid #000000
-
 input
   padding 1px 2px
 
-.mint-button--large
+.mint-button--small
   width 20%
   background #ffffff
   margin 20px 0 0 40%
