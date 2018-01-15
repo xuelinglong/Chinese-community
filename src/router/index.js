@@ -12,7 +12,10 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      component: Home
+      component: Home,
+      meta: {
+        keepAlive: true
+      }
     },
     {
       path: '/subject/:id',
@@ -22,7 +25,10 @@ export default new Router({
     {
       path: '/usertopics/:title',
       name: 'Usertopics',
-      component: Usertopics
+      component: Usertopics,
+      meta: {
+        keepAlive: false
+      }
     },
     {
       path: '/commentaries',

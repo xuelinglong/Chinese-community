@@ -101,7 +101,6 @@ export default {
 
   .list
     width 100%
-    height 600px
     overflow-y auto
     padding-top 60px
 
