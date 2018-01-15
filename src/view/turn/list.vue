@@ -1,16 +1,22 @@
 <template>
     <div class="list">
-      <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
-        <div class="list-all">
+      <mt-loadmore :top-method="loadTop" :bottom-all-loaded="allLoaded" ref="loadmore">
+        <div class="list-all" 
+          v-infinite-scroll="loadMore"
+          infinite-scroll-disabled="loading"
+          infinite-scroll-distance="70">
             <v-card v-for="subject in subjects" :subject="subject" :key="subject.id"></v-card>
         </div>
+        <p v-show="loading" class="page-infinite-loading">
+          <mt-spinner type="fading-circle" color="#008000"></mt-spinner>
+          <span class="text">加载中...</span>
+        </p>
         <div class="msg" v-show="this.allLoaded">到底啦~</div>
       </mt-loadmore>
     </div>
 </template>
 
 <script>
-import { Indicator, Toast } from 'mint-ui'
 import { mapState } from 'vuex'
 import Card from './../../components/card'
 import * as type from './../../store/modules/type'
@@ -20,8 +26,8 @@ export default {
   data () {
     return {
       page: 0,
+      allLoaded: '',
       loading: false,
-      allLoaded: false,
       bottomStatus: ''
     }
   },
@@ -34,21 +40,28 @@ export default {
       return state.topics.topics.data
     }
   }),
-  mounted () {
+  created () {
     this.fetch(this.tabName, 0, 20)
     this.page = 1
-    console.log(`mounted`)
+    this.check()
   },
   watch: {
     tabName: function (newtabName) {
-      this.allLoaded = false
-      this.bottomStatus = 'pull'
       this.$store.dispatch(type.CLEAR_STATE_DATA)
-      this.page = 1
       this.fetch(this.tabName, 0, 20)
+      this.page = 1
+      this.check()
     }
   },
   methods: {
+    check () {
+      if (this.subjects.length % 20 !== 0) {
+        this.allLoaded = true
+        console.log()
+      } else {
+        this.allLoaded = false
+      }
+    },
     fetch (tab, page, limit) {
       this.$store.dispatch(type.FETCH_TOPICS, {
         tab: this.tabName,
@@ -80,28 +93,6 @@ export default {
           break
       }
     },
-    loadMore () {
-      if (this.subjects.length !== 0) {
-        if (this.subjects.length % 20 !== 0) {
-          Toast({
-            message: '没有更多数据了',
-            duration: 700
-          })
-        } else {
-          Indicator.open({
-            text: '加载中...',
-            spinnerType: 'fading-circle'
-          })
-          setTimeout(() => {
-            this.loading = true
-            this.page += 1
-            this.fetch(this.selected, this.page, 20)
-            this.loading = false
-            Indicator.close()
-          }, 1000)
-        }
-      }
-    },
     loadTop () {
       this.$store.dispatch(type.CLEAR_STATE_DATA)
       for (let i = 0; i < this.page; i++) {
@@ -109,14 +100,19 @@ export default {
       }
       this.$refs.loadmore.onTopLoaded()
     },
-    loadBottom () {
-      this.page += 1
-      this.fetch(this.selected, this.page, 20)
-      if (this.subjects.length % 20 !== 0) {
-        this.allLoaded = true
-        this.bottomStatus = 'null'
+    loadMore () {
+      if (this.subjects.length !== 0) {
+        if (this.subjects.length % 20 === 0) {
+          this.loading = true
+          setTimeout(() => {
+            this.page += 1
+            this.fetch(this.selected, this.page, 20)
+            this.loading = false
+          }, 1000)
+        } else {
+          this.allLoaded = true
+        }
       }
-      this.$refs.loadmore.onBottomLoaded()
     }
   }
 }
@@ -134,7 +130,7 @@ export default {
     top 110px
     left 0
     right 0
-    bottom 6px
+    bottom 56px
     overflow-y auto
 
     .mint-loadmore-content
@@ -143,14 +139,32 @@ export default {
       position relative
       top 0
       left 0
-      bottom: 0
-      overflow-y: auto
+      bottom 0
+      box-sizing border-box
+
+      .page-infinite-loading
+        width 40%
+        position relative
+        top 0
+        left 35%
+        bottom 0
+        box-sizing border-box
+        display flex
+        flex-direction row
+        mt-spinner
+          flex 1
+          text-align right
+        .text
+          flex 1
+          text-align left
+          color #008000
 
       .msg
-        width: 100%
-        height: 60px
-        display: flex
-        background: #f0f8ff
-        padding: 20px 42% 0 42%
-        box-sizing: border-box
+        width 100%
+        height 60px
+        display flex
+        background #f0f8ff
+        padding 20px 42% 0 42%
+        box-sizing border-box
+      
 </style>
