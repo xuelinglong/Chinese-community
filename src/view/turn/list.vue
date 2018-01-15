@@ -11,7 +11,7 @@
           <mt-spinner type="fading-circle" color="#008000"></mt-spinner>
           <span class="text">加载中...</span>
         </p>
-        <div class="msg" v-show="this.allLoaded">到底啦~</div>
+        <div v-show="allLoaded" class="nomore">到底啦～</div>
       </mt-loadmore>
     </div>
 </template>
@@ -159,12 +159,10 @@ export default {
           text-align left
           color #008000
 
-      .msg
+      .nomore
         width 100%
         height 60px
-        display flex
         background #f0f8ff
-        padding 20px 42% 0 42%
+        padding 20px 40% 0 40%
         box-sizing border-box
-      
 </style>
