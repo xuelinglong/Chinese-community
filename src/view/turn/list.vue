@@ -104,11 +104,11 @@ export default {
       if (this.subjects.length !== 0) {
         if (this.subjects.length % 20 === 0) {
           this.loading = true
+          this.page += 1
+          this.fetch(this.selected, this.page, 20)
           setTimeout(() => {
-            this.page += 1
-            this.fetch(this.selected, this.page, 20)
             this.loading = false
-          }, 1000)
+          }, 3000)
         } else {
           this.allLoaded = true
         }
