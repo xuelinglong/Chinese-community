@@ -9,7 +9,15 @@
             <div class="title">未读消息({{ msg_count }})</div>
             <div class="msg-lists">
                 <div class="msg-item-f" v-if="msg_count === 0">没有消息</div>
-                <div class="msg-item-t" v-else-if="msg_count != 0">有消息</div>
+                <div class="msg-item-t" v-else-if="msg_count != 0">
+                    <div class="msg-item" v-for="subject in msgData.hasnot_read_messages" :key="subject.topic.id">
+                        <router-link :to="{name: 'Subject', params:{id: subject.topic.id}}">
+                        <div class="author">来自 {{ subject.author.loginname }}</div>
+                        <div class="time">{{ subject.reply.create_at | filterTime }}</div>
+                        <div class="content" v-html="subject.reply.content"></div>
+                        </router-link>
+                    </div>
+                </div>
             </div>
             <div class="title">已读消息</div>
             <div class="msg-lists">
@@ -61,15 +69,18 @@ export default {
 <style lang="stylus" rel="stylesheet/stylus">
 .msg
   width 100%
-  height 100%
+  min-height 100%
+  overflow-y auto
   display flex
 
   .msg-view
     flex 1
     width 100%
-    position relative
+    position fixed
     top 56px
     left 0
+    bottom 56px
+    overflow-y auto
 
     .title
       width 100%
