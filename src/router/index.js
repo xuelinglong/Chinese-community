@@ -4,6 +4,7 @@ import Home from '@/view/tabbar'
 import Subject from '@/components/subject'
 import Usertopics from '@/view/turn/children/usertopics'
 import Commentaries from '@/view/turn/children/commentaries'
+import Login from '@/view/turn/children/login'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/commentaries',
       name: 'Commentaries',
       component: Commentaries
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
     }
   ]
 })

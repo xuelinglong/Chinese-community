@@ -4,9 +4,7 @@
             <img src="./../../../assets/biker.png">
         </div>
         <div class="message">请登录账号查看！！！</div>
-        <div class="button">
-            <button class="login" @click="openToast">登录</button>
-        </div>
+        <button class="login" @click="openToast">登录</button>
     </div>
 </template>
 
@@ -50,7 +48,7 @@ export default {
     left 30%
     top 40%
 
-  .button
+  .login
     width 140px
     height 30px
     position absolute
@@ -58,8 +56,6 @@ export default {
     left 35%
     bottom 0
     background #008000
-
-    .login
-      font-size 1.2rem
-      color #ffffff
+    font-size 1.2rem
+    color #ffffff
 </style>

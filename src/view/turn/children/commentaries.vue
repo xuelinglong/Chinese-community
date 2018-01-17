@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { Toast } from 'mint-ui'
+import { MessageBox } from 'mint-ui'
 import { mapState } from 'vuex'
 import * as type from './../../../store/modules/type'
 import router from './../../../router/index'
@@ -59,18 +59,25 @@ export default {
     back () {
       router.go(-1)
     },
+    gotoLogin () {
+      MessageBox({
+        title: '提示',
+        message: '请登录以继续操作，是否登录？',
+        showCancelButton: true,
+        confirmButtonText: '去登录',
+        cancelButtonText: '暂不登录'
+      }).then(function () {
+        router.push({name: 'Login'})
+      }).catch(function (action) {
+        console.log('暂不登录')
+      })
+    },
     changeShow () {
       if (this.success) {
         this.$store.dispatch(type.STATE_SHOW_COMMDETAILS)
       } else {
-        this.openToast()
+        this.gotoLogin()
       }
-    },
-    openToast () {
-      Toast({
-        message: '您还没有登录，不能评论！',
-        duration: 1000
-      })
     }
   }
 }

@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { Toast } from 'mint-ui'
+import { MessageBox } from 'mint-ui'
 import router from './../router/index'
 import { mapState } from 'vuex'
 import * as type from './../store/modules/type'
@@ -111,9 +111,20 @@ export default {
         id: this.$route.params.id
       })
     },
+    gotoLogin () {
+      MessageBox({
+        title: '提示',
+        message: '请登录以继续操作，是否登录？',
+        showCancelButton: true,
+        confirmButtonText: '去登录',
+        cancelButtonText: '暂不登录'
+      }).then(function (action) {
+        router.push({name: 'Login'})
+      })
+    },
     star () {
       if (this.success === false) {
-        this.openToast()
+        this.gotoLogin()
       } else {
         if (this.isCollected) {
           this.$store.dispatch(type.DEL_COLLECTED_TOPIC, {
@@ -129,12 +140,6 @@ export default {
           })
         }
       }
-    },
-    openToast () {
-      Toast({
-        message: '您还没有登录，不能收藏！',
-        duration: 1000
-      })
     }
   }
 }

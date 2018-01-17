@@ -4,7 +4,6 @@
         <div class="login-view" v-if="success === false">
             <div class="accesstoken">
                 <img src="./../../assets/锁.png">
-                &nbsp
                 <input v-model="accesstoken">
             </div>
 

@@ -118,7 +118,7 @@ export default {
   .push-view
     flex 1
     width 100%
-    position relative
+    position fixed
     top 56px
     left 0
     bottom 56px
