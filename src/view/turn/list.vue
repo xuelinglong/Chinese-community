@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { Toast } from 'mint-ui'
 import { mapState } from 'vuex'
 import Card from './../../components/card'
 import * as type from './../../store/modules/type'
@@ -41,20 +42,19 @@ export default {
     }
   }),
   created () {
-    this.fetch(this.tabName, 0, 20)
+    this.fetchTopics(this.tabName, 0, 20)
     this.page = 1
-    this.check()
+    this.loadFailure()
   },
   watch: {
     tabName: function (newtabName) {
       this.$store.dispatch(type.CLEAR_STATE_DATA)
-      this.fetch(this.tabName, 0, 20)
-      this.page = 1
-      this.check()
+      this.fetchTopics(this.tabName, 0, 20)
+      this.loadFailure()
     }
   },
   methods: {
-    check () {
+    checkFullData () {
       if (this.subjects.length % 20 !== 0) {
         this.allLoaded = true
         console.log()
@@ -62,7 +62,7 @@ export default {
         this.allLoaded = false
       }
     },
-    fetch (tab, page, limit) {
+    fetchTopics (tab, page, limit) {
       this.$store.dispatch(type.FETCH_TOPICS, {
         tab: this.tabName,
         page,
@@ -74,30 +74,30 @@ export default {
       this.page = 1
       switch (val) {
         case 'all':
-          this.fetch('all', 0, 20)
+          this.fetchTopics('all', 0, 20)
           break
         case 'good':
-          this.fetch('good', 0, 20)
+          this.fetchTopics('good', 0, 20)
           break
         case 'weex':
-          this.fetch('weex', 0, 20)
+          this.fetchTopics('weex', 0, 20)
           break
         case 'share':
-          this.fetch('share', 0, 20)
+          this.fetchTopics('share', 0, 20)
           break
         case 'ask':
-          this.fetch('ask', 0, 20)
+          this.fetchTopics('ask', 0, 20)
           break
         case 'job':
-          this.fetch('job', 0, 20)
+          this.fetchTopics('job', 0, 20)
           break
       }
     },
     loadTop () {
       this.$store.dispatch(type.CLEAR_STATE_DATA)
-      for (let i = 0; i < this.page; i++) {
-        this.fetch(this.selected, i, 20)
-      }
+      this.fetchTopics(this.selected, 0, 20)
+      this.page = 1
+      this.loadFailure()
       this.$refs.loadmore.onTopLoaded()
     },
     loadMore () {
@@ -105,13 +105,24 @@ export default {
         if (this.subjects.length % 20 === 0) {
           this.loading = true
           this.page += 1
-          this.fetch(this.selected, this.page, 20)
+          this.fetchTopics(this.selected, this.page, 20)
           setTimeout(() => {
             this.loading = false
           }, 3000)
+          this.loadFailure()
         } else {
           this.allLoaded = true
         }
+      }
+    },
+    loadFailure () {
+      if (this.subjects.length / 20 + 1 !== this.page) {
+        this.page -= 1
+        Toast({
+          message: '加载失败，请重试',
+          position: 'bottom',
+          duration: 2000
+        })
       }
     }
   }
