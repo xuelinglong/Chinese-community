@@ -44,13 +44,15 @@ export default {
   created () {
     this.fetchTopics(this.tabName, 0, 20)
     this.page = 1
+    this.checkFullData()
     this.loadFailure()
   },
   watch: {
     tabName: function (newtabName) {
       this.$store.dispatch(type.CLEAR_STATE_DATA)
       this.fetchTopics(this.tabName, 0, 20)
-      this.loadFailure()
+      this.page = 1
+      this.checkFullData()
     }
   },
   methods: {
@@ -118,6 +120,7 @@ export default {
     loadFailure () {
       if (this.subjects.length / 20 + 1 !== this.page) {
         this.page -= 1
+        console.log(this.subjects.length / 20)
         Toast({
           message: '加载失败，请重试',
           position: 'bottom',
