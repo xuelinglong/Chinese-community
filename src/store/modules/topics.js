@@ -26,6 +26,9 @@ const mutations = {
   },
   [type.DEL_COLLECTED_TOPIC] (state) {
     state.topics.topicsubject.isCollected = false
+  },
+  [type.CLEAR_ISCOLLECTED] (state) {
+    state.topics.topicsubject.isCollected = false
   }
 }
 
@@ -105,6 +108,9 @@ const actions = {
       .catch(err => {
         console.log(err)
       })
+  },
+  [type.CLEAR_ISCOLLECTED] (context) {
+    context.commit(type.CLEAR_ISCOLLECTED)
   }
 }
 

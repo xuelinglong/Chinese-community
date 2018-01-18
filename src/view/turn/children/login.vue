@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <v-header></v-header>
-    <div class="login-box" @click="back">
+    <div class="login-box">
       <div class="accesstoken">
         <img src="./../../../assets/锁.png">
         <input v-model="accesstoken">
@@ -45,6 +45,7 @@ export default {
       this.$store.dispatch(type.GET_MESSAGES, {
         accesstoken: this.accesstoken
       })
+      this.back()
     }
   }
 }

@@ -60,16 +60,8 @@ export default {
       router.go(-1)
     },
     gotoLogin () {
-      MessageBox({
-        title: '提示',
-        message: '请登录以继续操作，是否登录？',
-        showCancelButton: true,
-        confirmButtonText: '去登录',
-        cancelButtonText: '暂不登录'
-      }).then(function () {
+      MessageBox.confirm('请登录以继续操作，是否登录？').then(action => {
         router.push({name: 'Login'})
-      }).catch(function (action) {
-        console.log('暂不登录')
       })
     },
     changeShow () {

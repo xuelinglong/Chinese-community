@@ -77,11 +77,14 @@ export default {
     }
   },
   created () {
-    if (this.success) {
-      this.checkCollected(this.arr, this.$route.params.id)
-      this.fetchMsg()
-    } else {
-      this.fetchMsg()
+    this.fetchMsg()
+  },
+  beforeUpdate () {
+    this.checkCollected(this.arr, this.$route.params.id)
+  },
+  beforeDestroy () {
+    if (this.isCollected) {
+      this.$store.dispatch(type.CLEAR_ISCOLLECTED)
     }
   },
   methods: {
@@ -112,13 +115,7 @@ export default {
       })
     },
     gotoLogin () {
-      MessageBox({
-        title: '提示',
-        message: '请登录以继续操作，是否登录？',
-        showCancelButton: true,
-        confirmButtonText: '去登录',
-        cancelButtonText: '暂不登录'
-      }).then(function (action) {
+      MessageBox.confirm('请登录以继续操作，是否登录？').then(action => {
         router.push({name: 'Login'})
       })
     },
@@ -156,6 +153,7 @@ export default {
     width 100%
     height 60px
     position fixed
+    z-index 10
     box-sizing border-box
     background #f0f8ff
 
@@ -219,6 +217,7 @@ export default {
       font-size 1.2rem
       position relative
       top -20px
+      z-index 1
 
     .time
       font-size 1.2rem
@@ -226,6 +225,7 @@ export default {
       position relative
       left 40%
       top -20px
+      z-index 1
 
     .content
       padding 20px
