@@ -65,10 +65,10 @@ const actions = {
   // 接收 post 参数
   // accesstoken   String      用户的 accessToken
   // topic_id      String      被收藏的主题id
-  [type.LOGIN_USER] (context) {
+  [type.LOGIN_USER] (context, payload) {
     axios
       .post('accesstoken', {
-        accesstoken: '2cf09343-2162-48c8-88aa-bba001aa155d'
+        accesstoken: payload.accesstoken
       })
       .then(res => {
         context.commit(type.LOGIN_USER, {

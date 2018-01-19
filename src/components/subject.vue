@@ -30,26 +30,26 @@ import { mapState } from 'vuex'
 import * as type from './../store/modules/type'
 export default {
   name: 'Subject',
-  // data() {
-  //     return {
-  //         subject: {
-  //             author: {
-  //                 avatar_url: '',
-  //                 loginname: ''
-  //             },
-  //             author_id: '',
-  //             content: '',
-  //             create_at: '',
-  //             id: '',
-  //             last_reply_at: '',
-  //             replies: [],
-  //             reply_count: 0,
-  //             tab: '',
-  //             title: '',
-  //             top: false,
-  //             visit_count: 0
-  //         }
-  //     };
+  // data () {
+  //   return {
+  //     subject: {
+  //       author: {
+  //         avatar_url: '',
+  //         loginname: ''
+  //       },
+  //       author_id: '',
+  //       content: '',
+  //       create_at: '',
+  //       id: '',
+  //       last_reply_at: '',
+  //       replies: [],
+  //       reply_count: 0,
+  //       tab: '',
+  //       title: '',
+  //       top: false,
+  //       visit_count: 0
+  //     }
+  //   }
   // },
   computed: mapState({
     subject (state) {
@@ -80,7 +80,9 @@ export default {
     this.fetchMsg()
   },
   beforeUpdate () {
-    this.checkCollected(this.arr, this.$route.params.id)
+    if (this.success) {
+      this.checkCollected(this.arr, this.$route.params.id)
+    }
   },
   beforeDestroy () {
     if (this.isCollected) {
@@ -94,7 +96,12 @@ export default {
     },
     checkCollected (arr, topicid) {
       function check (arr, topicid) {
-        let i = arr.length
+        let i
+        if (arr) {
+          i = arr.length
+        } else {
+          i = 0
+        }
         while (i--) {
           if (arr[i].id === topicid) {
             return true

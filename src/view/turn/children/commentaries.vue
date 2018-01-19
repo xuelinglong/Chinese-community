@@ -3,7 +3,7 @@
         <v-commdetails v-show="show" :topicid="this.topicid" :replyid="this.replyid"></v-commdetails>
         <div class="top-box" fixed>
             <img class="back" src="./../../../assets/back.png" @click="back">
-            <div class="commentaries" @click="changeShow">
+            <div class="commentaries-box" @click="changeShow">
                 <div class="input">
                     <span class="word">说点什么吧</span>
                 </div>
@@ -14,7 +14,7 @@
             <div class="replies-item" v-for="subject in replies" :key="subject.id">
                 <v-replyitem :subject="subject" :replyid="subject.id"></v-replyitem>
             </div>
-            <div class="blank-box" v-show="replies.length === 0">没有评论</div>
+            <div class="blank-box" v-show="this.length === 0">没有评论</div>
         </div>
     </div>
 </template>
@@ -30,8 +30,8 @@ export default {
   name: 'Commentaries',
   data () {
     return {
-      replyid: ''
-      // show: false
+      replyid: '',
+      length: 0
     }
   },
   components: {
@@ -55,6 +55,13 @@ export default {
       return state.topics.topics.topicsubject.sub.replies
     }
   }),
+  created () {
+    if (this.replies) {
+      this.length = this.replies.length
+    } else {
+      this.length = 0
+    }
+  },
   methods: {
     back () {
       router.go(-1)
@@ -87,6 +94,7 @@ export default {
     position fixed
     box-sizing border-box
     background #f0f8ff
+    z-index 10
 
     .back
       width 30px
@@ -94,7 +102,7 @@ export default {
       margin 15px 0 0 20px
       float left
 
-    .commentaries
+    .commentaries-box
       width 250px
       height 60px
       float left
@@ -122,7 +130,6 @@ export default {
 
   .replies-box
     width 100%
-    min-height 607px
     overflow-y auto
     padding-top 60px
     box-sizing border-box
@@ -135,10 +142,8 @@ export default {
 
   .blank-box
     width 100%
-    min-height 607px
     padding-top 20px
     text-align center
-    background #f0f0f0
     color #000000
     box-sizing border-box
 </style>
