@@ -69,28 +69,7 @@ export default {
     msg_count: 0,
     msgData: {
       has_read_messages: [],
-      hasnot_read_messages: [
-        {
-          id: '',
-          type: '',
-          has_read: false,
-          author: {
-            loginname: '',
-            avatar_url: ''
-          },
-          topic: {
-            id: '',
-            title: '',
-            last_reply_at: ''
-          },
-          reply: {
-            id: '',
-            content: '',
-            ups: [],
-            create_at: ''
-          }
-        }
-      ]
+      hasnot_read_messages: []
     }
   },
   mutations,

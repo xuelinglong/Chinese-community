@@ -59,7 +59,6 @@ export default {
     checkFullData () {
       if (this.subjects.length % 20 !== 0) {
         this.allLoaded = true
-        console.log()
       } else {
         this.allLoaded = false
       }
@@ -120,7 +119,6 @@ export default {
     loadFailure () {
       if (this.subjects.length / 20 + 1 !== this.page) {
         this.page -= 1
-        console.log(this.subjects.length / 20)
         Toast({
           message: '加载失败，请重试',
           position: 'bottom',
