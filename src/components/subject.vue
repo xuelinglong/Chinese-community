@@ -10,8 +10,8 @@
                 <img src="./../assets/commentaries.png" class="comm-icon">
             </div>
             </router-link>
-            <img class="star" src="./../assets/star.png"  v-show="!this.isCollected"  @click="star">
-            <img class="star" src="./../assets/星.png"  v-show="this.isCollected"  @click="star">
+            <img class="star" src="./../assets/star-null.png"  v-show="!this.isCollected"  @click="star">
+            <img class="star" src="./../assets/star-full.png"  v-show="this.isCollected"  @click="star">
         </div>
         <div class="title">{{ subject.title }}</div>
         <div class="author-box">

@@ -17,19 +17,19 @@
 
         <mt-tabbar fixed v-model="selected">
             <mt-tab-item id="topics">
-                <img slot="icon" src="./../assets/话题.png">
+                <img slot="icon" src="./../assets/topic.png">
                 话题
             </mt-tab-item>
             <mt-tab-item id="msg">
-                <img slot="icon" src="./../assets/消息.png">
+                <img slot="icon" src="./../assets/message.png">
                 未读消息
             </mt-tab-item>
             <mt-tab-item id="push">
-                <img slot="icon" src="./../assets/发布.png">
+                <img slot="icon" src="./../assets/push.png">
                 发布
             </mt-tab-item>
             <mt-tab-item id="my">
-                <img slot="icon" src="./../assets/我的.png">
+                <img slot="icon" src="./../assets/my.png">
                 我的
             </mt-tab-item>
         </mt-tabbar>

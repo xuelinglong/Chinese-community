@@ -3,7 +3,7 @@
     <v-header></v-header>
     <div class="login-box">
       <div class="accesstoken">
-        <img src="./../../../assets/锁.png">
+        <img src="./../../../assets/lock.png">
         <input v-model="accesstoken">
       </div>
       <button class="login" @click="login">登录</button>
