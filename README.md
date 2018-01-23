@@ -33,9 +33,8 @@
 ` npm run dev `
 
 # 感谢&参考
-[https://musiky.github.io/vue-community/](https://musiky.github.io/vue-community/)
+[https://github.com/muzqi/vue-community](https://github.com/muzqi/vue-community)
 
 [https://mint-ui.github.io/docs/#/zh-cn2/](https://mint-ui.github.io/docs/#/zh-cn2/)
 
 [mint-ui官方demo](https://github.com/ElemeFE/mint-ui/blob/master/example/pages)
-
