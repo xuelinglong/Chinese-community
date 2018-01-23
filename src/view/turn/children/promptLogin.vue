@@ -4,20 +4,17 @@
             <img src="./../../../assets/biker.png">
         </div>
         <div class="message">请登录账号查看！！！</div>
-        <button class="login" @click="openToast">登录</button>
+        <button class="login" @click="gotoLogin">登录</button>
     </div>
 </template>
 
 <script>
-import { Toast } from 'mint-ui'
+import router from './../../../router/index'
 export default {
   name: 'PromptLogin',
   methods: {
-    openToast () {
-      Toast({
-        message: '请先登录！！！',
-        duration: 1000
-      })
+    gotoLogin () {
+      router.push({name: 'Login'})
     }
   }
 }
