@@ -1,30 +1,41 @@
-# community
+# Chinese-community
 
-> Vue中文网项目
+* Vue中文网项目
+* 请使用chrome手机模式预览：[demo地址](https://xuelinglong.github.io/Chinese-community/#/)
+* 感谢[vue-js中文社区](https://www.vue-js.com/api/)提供的api接口
 
-## Build Setup
+# 项目技术架构
+* vue.js
+* vue-router
+* vuex
+* axios
+* mint-ui
+* stylus
 
-``` bash
-# install dependencies
-npm install
+# 实现功能
+* 滑动加载
+* 下拉刷新
+* 登录
+* 发布新主题
+* 评论、评论点赞
+* 收藏
 
-# serve with hot reload at localhost:8080
-npm run dev
+# 正在实现的功能
+* 回复评论
+* 返回时记录位置
+* 注册
 
-# build for production with minification
-npm run build
+# 安装
+` git clone https://github.com/xuelinglong/Chinese-community.git `
 
-# build for production and view the bundle analyzer report
-npm run build --report
+` npm install `
 
-# run unit tests
-npm run unit
+` npm run dev `
 
-# run e2e tests
-npm run e2e
+# 感谢&参考
+[https://musiky.github.io/vue-community/](https://musiky.github.io/vue-community/)
 
-# run all tests
-npm test
-```
+[https://mint-ui.github.io/docs/#/zh-cn2/](https://mint-ui.github.io/docs/#/zh-cn2/)
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+[mint-ui官方demo](https://github.com/ElemeFE/mint-ui/blob/master/example/pages)
+
