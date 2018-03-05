@@ -1,38 +1,36 @@
 <template>
-    <div class="comm-details">
-        <div class="comm-box">
-            <div class="edit">
-                <textarea class="input" v-model="content"></textarea>
+    <div class="commentedit">
+        <div class="commentedit-box">
+            <div class="commentedit-edit">
+                <textarea class="commentedit-input" v-model="content"></textarea>
             </div>
-            <div class="icon">
-                <button class="icon-push" @click="push">发送</button>
-                <button class="icon-cancel" @click="back">取消</button>
+            <div class="commentedit-icon">
+                <button class="commentedit-icon-push" @click="push">发送</button>
+                <button class="commentedit-icon-cancel" @click="back">取消</button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-// import router from './../../../router/index'
 import { Toast } from 'mint-ui'
 import { mapState } from 'vuex'
-import * as type from './../../../store/modules/type'
+import * as type from './../../store/modules/type'
 export default {
-  name: 'Comm-details',
+  name: 'CommentEdit',
+  props: {
+    topicid: {
+      type: String
+    },
+    replyid: {
+      type: String
+    }
+  },
   data () {
     return {
       content: []
     }
   },
-  props: ['topicid', 'replyid'],
-  computed: mapState({
-    accesstoken (state) {
-      return state.user.accesstoken
-    },
-    loginname (state) {
-      return state.user.loginname
-    }
-  }),
   methods: {
     back () {
       this.$store.dispatch(type.STATE_SHOW_COMMDETAILS)
@@ -65,12 +63,20 @@ export default {
         duration: 1000
       })
     }
-  }
+  },
+  computed: mapState({
+    accesstoken (state) {
+      return state.user.accesstoken
+    },
+    loginname (state) {
+      return state.user.loginname
+    }
+  })
 }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-.comm-details
+.commentedit
   width 100%
   height 100%
   position absolute
@@ -79,7 +85,7 @@ export default {
   z-index 10
   background rgba(0, 0, 0, 0.6)
 
-  .comm-box
+  .commentedit-box
     width 80%
     height 30%
     position absolute
@@ -87,24 +93,24 @@ export default {
     top 20%
     background #ffffff
 
-    .edit
+    .commentedit-edit
       width 100%
       height 70%
       padding 5% 6%
       box-sizing border-box
 
-      .input
+      .commentedit-input
         width 100%
         height 100%
         background #f0f0f0
         box-sizing border-box
 
-    .icon
+    .commentedit-icon
       width 100%
       height 30%
       box-sizing border-box
 
-      .icon-push
+      .commentedit-icon-push
         width 30%
         height 40px
         position absolute
@@ -113,7 +119,7 @@ export default {
         font-size 1.2rem
         color #008000
 
-      .icon-cancel
+      .commentedit-icon-cancel
         width 30%
         height 40px
         position absolute

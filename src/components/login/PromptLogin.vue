@@ -1,15 +1,15 @@
 <template>
     <div class="promptLogin">
-        <div class="img">
-            <img src="./../../../assets/biker.png">
+        <div class="promptLogin-img">
+            <img class="promptLogin-image" src="./../../assets/biker.png">
         </div>
-        <div class="message">请登录账号查看！！！</div>
-        <button class="login" @click="gotoLogin">登录</button>
+        <div class="promptLogin-message">请登录账号查看！！！</div>
+        <button class="promptLogin-button" @click="gotoLogin">登录</button>
     </div>
 </template>
 
 <script>
-import router from './../../../router/index'
+import router from './../../router/index'
 export default {
   name: 'PromptLogin',
   methods: {
@@ -26,7 +26,7 @@ export default {
   height 555px
   text-align center
 
-  .img
+  .promptLogin-img
     width 100px
     height 100px
     position absolute
@@ -34,18 +34,18 @@ export default {
     top 20%
     bottom 0
 
-    img
+    .promptLogin-image
       width 100px
       height 100px
 
-  .message
+  .promptLogin-message
     width 200px
     height 50px
     position absolute
     left 30%
     top 40%
 
-  .login
+  .promptLogin-button
     width 140px
     height 30px
     position absolute

@@ -2,34 +2,34 @@
     <div class="tabbar">
         <mt-tab-container v-model="selected">
             <mt-tab-container-item id="topics">
-                <v-topics></v-topics>
+                <page-topics></page-topics>
             </mt-tab-container-item>
             <mt-tab-container-item id="msg">
-                <v-msg></v-msg>
+                <page-msg></page-msg>
             </mt-tab-container-item>
             <mt-tab-container-item id="push">
-                <v-push></v-push>
+                <page-push></page-push>
             </mt-tab-container-item>
             <mt-tab-container-item id="my">
-                <v-my></v-my>
+                <page-user></page-user>
             </mt-tab-container-item>
         </mt-tab-container>
 
         <mt-tabbar fixed v-model="selected">
             <mt-tab-item id="topics">
-                <img slot="icon" src="./../assets/topic.png">
+                <img slot="icon" src="./../../assets/topic.png">
                 话题
             </mt-tab-item>
             <mt-tab-item id="msg">
-                <img slot="icon" src="./../assets/message.png">
+                <img slot="icon" src="./../../assets/message.png">
                 未读消息
             </mt-tab-item>
             <mt-tab-item id="push">
-                <img slot="icon" src="./../assets/push.png">
+                <img slot="icon" src="./../../assets/push.png">
                 发布
             </mt-tab-item>
             <mt-tab-item id="my">
-                <img slot="icon" src="./../assets/my.png">
+                <img slot="icon" src="./../../assets/my.png">
                 我的
             </mt-tab-item>
         </mt-tabbar>
@@ -38,22 +38,23 @@
 
 <script>
 import { mapState } from 'vuex'
-import Topics from './turn/topics'
-import Msg from './turn/msg'
-import Push from './turn/push'
-import My from './turn/my'
+import Topics from './../../pages/topics/Topics'
+import Msg from './../../pages/message/Message.vue'
+import Push from './../../pages/push/Push'
+import User from './../../pages/user/User'
 let selectedItemName = 'topics'
 
 export default {
-  name: 'tabbar',
+  name: 'Tabbar',
+  components: {
+    'page-topics': Topics,
+    'page-msg': Msg,
+    'page-push': Push,
+    'page-user': User
+  },
   data () {
     return {
       selected: selectedItemName
-    }
-  },
-  watch: {
-    selected: function (val, oldVal) {
-      selectedItemName = val
     }
   },
   computed: mapState({
@@ -61,11 +62,10 @@ export default {
       return state.topics.selected
     }
   }),
-  components: {
-    'v-topics': Topics,
-    'v-msg': Msg,
-    'v-push': Push,
-    'v-my': My
+  watch: {
+    selected: function (val, oldVal) {
+      selectedItemName = val
+    }
   }
 }
 </script>
@@ -99,6 +99,7 @@ export default {
     .mint-tab-item
       border-bottom 0px
 
-.mint-tabbar > .mint-tab-item.is-selected
-  color #008000
+  .mint-tabbar > .mint-tab-item.is-selected
+    background-color #eaeaea
+    color #008000
 </style>

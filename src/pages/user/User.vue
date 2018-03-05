@@ -1,25 +1,25 @@
 <template>
-    <div class="my">
-        <v-header></v-header>
-        <div class="login-view" v-if="success === false">
-            <div class="accesstoken">
-                <img src="./../../assets/lock.png">
-                <input v-model="accesstoken">
+    <div class="user">
+        <app-header></app-header>
+        <div class="user-login-view" v-if="success === false">
+            <div class="user-accesstoken">
+                <img class="user-lock-image" src="./../../assets/lock.png">
+                <input class="user-input" v-model="accesstoken">
             </div>
 
-            <button class="registration">注册</button>
-            <button class="login" @click="go">登录</button>
+            <button class="user-registration">注册</button>
+            <button class="user-login" @click="go">登录</button>
         </div>
 
-        <div class="my-view" v-if="success != false">
-            <div class="usr-box">
-                <div class="img"><img :src="usr.avatar_url"></div>
-                <div class="msg">
-                    <div class="loginname">{{ usr.loginname }}</div>
-                    <div class="id">ID:{{ USRARR.id }}</div>
+        <div class="user-view" v-if="success != false">
+            <div class="user-msg-box">
+                <div class="user-img"><img :src="usr.avatar_url"></div>
+                <div class="user-msg">
+                    <div class="user-loginname">{{ usr.loginname }}</div>
+                    <div class="user-id">ID:{{ USRARR.id }}</div>
                 </div>
             </div>
-            <div class="msg-box">
+            <div class="user-details-box">
                 <mt-cell title="我收藏的话题" is-link :to="{name: 'Usertopics', params: {title: '我收藏的话题'}}">
                     <img slot="icon" src="./../../assets/star-full.png" width="24" height="24">
                     <span style="color: green">{{ COLLECT_TOPICS }}</span>
@@ -33,7 +33,7 @@
                     <span style="color: green">{{ RECENT_TOPICS }}</span>
                 </mt-cell>
             </div>
-            <div class="logout" @click="logout">退出登录</div>
+            <div class="user-logout" @click="logout">退出登录</div>
         </div>
     </div>
 </template>
@@ -43,45 +43,22 @@ import { Indicator } from 'mint-ui'
 import { mapState, mapGetters } from 'vuex'
 import * as type from './../../store/modules/type'
 import { getCookie } from './../../assets/js/cookie'
-import Header from './../header'
+import Header from './../../components/header/Header'
 export default {
-  name: 'My',
+  name: 'User',
+  components: {
+    'app-header': Header
+  },
   data () {
     return {
-      // lists: []
       accesstoken: '2cf09343-2162-48c8-88aa-bba001aa155d'
     }
-  },
-  components: {
-    'v-header': Header
   },
   created () {
     let cookie = getCookie('accesstoken')
     if (cookie) {
       this.accesstoken = cookie
-      console.log(cookie)
     }
-  },
-  computed: {
-    ...mapState({
-      success (state) {
-        return state.user.success
-      },
-      USRARR (state) {
-        return state.user.user.usrArr
-      },
-      usr (state) {
-        return state.user.user.data
-      }
-      // accesstoken (state) {
-      //   return state.user.accesstoken
-      // }
-    }),
-    ...mapGetters([
-      'COLLECT_TOPICS',
-      'RECENT_REPLIES',
-      'RECENT_TOPICS'
-    ])
   },
   methods: {
     go () {
@@ -103,18 +80,36 @@ export default {
     logout () {
       this.$store.dispatch(type.LOGOUT)
     }
+  },
+  computed: {
+    ...mapState({
+      success (state) {
+        return state.user.success
+      },
+      USRARR (state) {
+        return state.user.user.usrArr
+      },
+      usr (state) {
+        return state.user.user.data
+      }
+    }),
+    ...mapGetters([
+      'COLLECT_TOPICS',
+      'RECENT_REPLIES',
+      'RECENT_TOPICS'
+    ])
   }
 }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-.my
+.user
   width 100%
   height 100%
   display flex
   text-align center
 
-  .login-view
+  .user-login-view
     flex 1
     width 100%
     position relative
@@ -122,7 +117,7 @@ export default {
     left 0
     background #f0f0f0
 
-    .accesstoken
+    .user-accesstoken
       width 70%
       height 30px
       display flex
@@ -131,12 +126,12 @@ export default {
       top 56px
       left 15%
 
-      img
+      .user-lock-image
         flex 1
         width 30px
         height 30px
 
-      input
+      .user-input
         flex 7
         width 70%
         height 30px
@@ -144,7 +139,7 @@ export default {
         background #f0f0f0
         // border: 1px solid #aaaaaa
 
-    .registration
+    .user-registration
       width 80%
       height 40px
       position absolute
@@ -155,7 +150,7 @@ export default {
       border-radius 3px
       border 1px solid #fcfcfc
 
-    .login
+    .user-login
       width 80%
       height 40px
       position absolute
@@ -167,7 +162,7 @@ export default {
       border-radius 3px
       border 1px solid #008000
 
-  .my-view
+  .user-view
     flex 1
     width 100%
     // height: 555px;
@@ -178,7 +173,7 @@ export default {
     overflow-y hidden
     background #f0f0f0
 
-    .usr-box
+    .user-msg-box
       width 100%
       height 80px
       padding 5px 10px
@@ -186,12 +181,12 @@ export default {
       border-top 15px solid #f0f0f0
       background #ffffff
 
-      .img
+      .user-img
         width 50px
         height 50px
         float left
 
-      .msg
+      .user-msg
         width 85%
         height 50px
         float right
@@ -199,7 +194,7 @@ export default {
         flex-direction column
         text-align left
 
-        .loginname
+        .user-loginname
           width 100%
           height 25px
           flex 1
@@ -207,7 +202,7 @@ export default {
           padding-left 10px
           box-sizing border-box
 
-        .id
+        .user-id
           width 100%
           height 25px
           flex 1
@@ -215,14 +210,14 @@ export default {
           padding-left 10px
           box-sizing border-box
 
-    .msg-box
+    .user-details-box
       width 100%
       height auto
       text-align left
       border-top 15px solid #f0f0f0
       background #ffffff
 
-    .logout
+    .user-logout
       width 100%
       height 40px
       display block

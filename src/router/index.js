@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/view/tabbar'
-import Subject from '@/components/subject'
-import Usertopics from '@/view/turn/children/usertopics'
-import Commentaries from '@/view/turn/children/commentaries'
-import Login from '@/view/turn/children/login'
+import Home from '@/components/tabbar/Tabbar'
+import Details from '@/components/details/Details'
+import Usertopics from '@/pages/user/usertopics/Usertopics'
+import Comments from '@/components/comments/Comments'
+import Login from '@/components/login/Login'
 
 Vue.use(Router)
 
@@ -21,7 +21,7 @@ export default new Router({
     {
       path: '/subject/:id',
       name: 'Subject',
-      component: Subject
+      component: Details
     },
     {
       path: '/usertopics/:title',
@@ -32,9 +32,9 @@ export default new Router({
       }
     },
     {
-      path: '/commentaries',
-      name: 'Commentaries',
-      component: Commentaries
+      path: '/comments',
+      name: 'Comments',
+      component: Comments
     },
     {
       path: '/login',

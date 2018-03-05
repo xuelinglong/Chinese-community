@@ -1,17 +1,17 @@
 <template>
-    <div class="list">
+    <div class="topicsList">
       <mt-loadmore :top-method="loadTop" :bottom-all-loaded="allLoaded" ref="loadmore">
-        <div class="list-all" 
+        <div class="topicsList-all" 
           v-infinite-scroll="loadMore"
           infinite-scroll-disabled="loading"
           infinite-scroll-distance="70">
-            <v-card v-for="subject in subjects" :subject="subject" :key="subject.id"></v-card>
+            <topics-list-item v-for="subject in subjects" :subject="subject" :key="subject.id"></topics-list-item>
         </div>
         <p v-show="loading" class="page-infinite-loading">
           <mt-spinner type="fading-circle" color="#008000"></mt-spinner>
           <span class="text">加载中...</span>
         </p>
-        <div v-show="allLoaded" class="nomore">到底啦～</div>
+        <div v-show="allLoaded" class="topicsList-nomore">到底啦～</div>
       </mt-loadmore>
     </div>
 </template>
@@ -19,11 +19,19 @@
 <script>
 import { Toast } from 'mint-ui'
 import { mapState } from 'vuex'
-import Card from './../../components/card'
+import ToicsListItem from './TopicsListItem'
 import * as type from './../../store/modules/type'
 
 export default {
-  name: 'List',
+  name: 'TopicsList',
+  components: {
+    'topics-list-item': ToicsListItem
+  },
+  props: {
+    tabName: {
+      type: String
+    }
+  },
   data () {
     return {
       page: 0,
@@ -32,28 +40,11 @@ export default {
       bottomStatus: ''
     }
   },
-  components: {
-    'v-card': Card
-  },
-  props: ['tabName'],
-  computed: mapState({
-    subjects (state) {
-      return state.topics.topics.data
-    }
-  }),
   created () {
     this.fetchTopics(this.tabName, 0, 20)
     this.page = 1
     this.checkFullData()
     this.loadFailure()
-  },
-  watch: {
-    tabName: function (newtabName) {
-      this.$store.dispatch(type.CLEAR_STATE_DATA)
-      this.fetchTopics(this.tabName, 0, 20)
-      this.page = 1
-      this.checkFullData()
-    }
   },
   methods: {
     checkFullData () {
@@ -126,12 +117,25 @@ export default {
         })
       }
     }
+  },
+  computed: mapState({
+    subjects (state) {
+      return state.topics.topics.data
+    }
+  }),
+  watch: {
+    tabName: function (newtabName) {
+      this.$store.dispatch(type.CLEAR_STATE_DATA)
+      this.fetchTopics(this.tabName, 0, 20)
+      this.page = 1
+      this.checkFullData()
+    }
   }
 }
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus">
-.list
+<style lang="stylus" rel="stylesheet/stylus" scoped>
+.topicsList
   width 100%
   height auto
 
@@ -171,7 +175,7 @@ export default {
           text-align left
           color #008000
 
-      .nomore
+      .topicsList-nomore
         width 100%
         height 60px
         background #f0f8ff

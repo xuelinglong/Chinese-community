@@ -1,45 +1,36 @@
 <template>
   <div class="login">
-    <v-header></v-header>
+    <app-header></app-header>
     <div class="login-box">
-      <div class="accesstoken">
-        <img src="./../../../assets/lock.png">
-        <input v-model="accesstoken">
+      <div class="login-accesstoken">
+        <img class="login-img" src="./../../assets/lock.png">
+        <input class="login-input" v-model="accesstoken">
       </div>
-      <button class="login" @click="login">登录</button>
+      <button class="login-button" @click="login">登录</button>
     </div>
   </div>
 </template>
 
 <script>
 import { Indicator } from 'mint-ui'
-import { mapState } from 'vuex'
-import * as type from './../../../store/modules/type'
-import router from './../../../router/index'
-import { getCookie } from './../../../assets/js/cookie'
-import Header from './../../header'
+import * as type from './../../store/modules/type'
+import router from './../../router/index'
+import { getCookie } from './../../assets/js/cookie'
+import Header from './../header/Header'
 export default {
   name: 'Login',
+  components: {
+    'app-header': Header
+  },
   data () {
     return {
       accesstoken: '2cf09343-2162-48c8-88aa-bba001aa155d'
     }
   },
-  components: {
-    'v-header': Header
-  },
-  computed: {
-    ...mapState({
-      accesstoken (state) {
-        return state.user.accesstoken
-      }
-    })
-  },
   created () {
     let cookie = getCookie('accesstoken')
     if (cookie) {
       this.accesstoken = cookie
-      console.log(cookie)
     }
   },
   methods: {
@@ -79,24 +70,24 @@ export default {
     padding 50px
     box-sizing border-box
 
-    .accesstoken
+    .login-accesstoken
       width 100%
       height 100px
       display flex
       flex-direction row
 
-      img
+      .login-img
         width 30px
         height 30px
         flex 1
       
-      input
+      .login-input
         flex 7
         height 30px
         font-size 1.2rem
         border-bottom 0.5px solid #aaaaaa
 
-    .login
+    .login-button
       width 80%
       height 40px
       font-size 1.2rem

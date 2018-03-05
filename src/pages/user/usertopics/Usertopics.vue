@@ -1,19 +1,19 @@
 <template>
     <div class="usertopics">
-        <div class="top" fixed>
-            <img src="./../../../assets/close.png" @click="back">
-            <span class="title">{{ this.$route.params.title }} ( {{ lists.length }} )</span>
+        <div class="usertopics-top-bar" fixed>
+            <img class="usertopics-img-back" src="./../../../assets/close.png" @click="back">
+            <span class="usertopics-title">{{ this.$route.params.title }} ( {{ lists.length }} )</span>
         </div>
-        <div class="list">
-            <div class="list-item" v-for="list in lists" :key="list.id">
+        <div class="usertopics-list">
+            <div class="usertopics-list-item" v-for="list in lists" :key="list.id">
                 <router-link :to="{name: 'Subject', params:{id: list.id}}">
-                <div class="img">
-                    <img :src="list.author.avatar_url">
-                </div>
-                <div class="msg-box">
-                    <span class="title">{{ list.title }}</span>
-                    <span class="id">{{ list.author.loginname }}</span>
-                </div>
+                  <div class="usertopics-img">
+                      <img class="usertopics-img-author" :src="list.author.avatar_url">
+                  </div>
+                  <div class="usertopics-msg-box">
+                      <span class="usertopics-title">{{ list.title }}</span>
+                      <span class="usertopics-id">{{ list.author.loginname }}</span>
+                  </div>
                 </router-link>
             </div>
         </div>
@@ -31,20 +31,6 @@ export default {
       lists: []
     }
   },
-  computed: mapState({
-    // arr(state) {
-    //     return state.user.user.data;
-    // },
-    collect_topics (state) {
-      return state.user.user.collect_topics
-    },
-    recent_replies (state) {
-      return state.user.user.recent_replies
-    },
-    recent_topics (state) {
-      return state.user.user.recent_topics
-    }
-  }),
   created () {
     this.$store.dispatch(type.GET_LIST_DATA)
     let TYPE = this.$route.params.title
@@ -65,7 +51,18 @@ export default {
       router.go(-1)
       this.$store.dispatch(type.CLEAR_LIST_DATA)
     }
-  }
+  },
+  computed: mapState({
+    collect_topics (state) {
+      return state.user.user.collect_topics
+    },
+    recent_replies (state) {
+      return state.user.user.recent_replies
+    },
+    recent_topics (state) {
+      return state.user.user.recent_topics
+    }
+  })
 }
 </script>
 
@@ -77,7 +74,7 @@ export default {
   text-align left
   background #f0f0f0
 
-  .top
+  .usertopics-top-bar
     width 100%
     height 60px
     position fixed
@@ -85,12 +82,12 @@ export default {
     padding 10px 20px
     background #008000
 
-    img
+    .usertopics-img-back
       width 40px
       height 40px
       float left
 
-    .title
+    .usertopics-title
       width 250px
       height 40px
       float left
@@ -99,12 +96,12 @@ export default {
       font-size 1.5rem
       box-sizing border-box
 
-  .list
+  .usertopics-list
     width 100%
     overflow-y auto
     padding-top 60px
 
-    .list-item
+    .usertopics-list-item
       width 100%
       height 100px
       padding 20px
@@ -116,23 +113,23 @@ export default {
         text-decoration none
         color #000000
 
-        .img
+        .usertopics-img
           width 50px
           height 50px
           float left
 
-          img
+          .usertopics-img-author
             width 50px
             height 50px
 
-        .msg-box
+        .usertopics-msg-box
           width 270px
           height 60px
           display flex
           flex-direction column
           float right
 
-          .title
+          .usertopics-title
             width 100%
             height 40px
             font-size 0.9rem
@@ -142,7 +139,7 @@ export default {
             -webkit-line-clamp 2
             -webkit-box-orient vertical
 
-          .id
+          .usertopics-id
             flex 1
             width 100%
             height 20px

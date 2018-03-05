@@ -45,7 +45,7 @@ const actions = {
       })
       .then(res => {
         context.commit(type.UPS_REPLY, {
-          data: res.data.data
+          data: res.data
         })
         context.dispatch(type.FETCH_TOPICS_SUBJECT, {
           id: payload.topicid

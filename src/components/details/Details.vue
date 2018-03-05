@@ -1,60 +1,35 @@
 <template>
-    <div class="subject">
-        <div class="top-box" fixed>
-            <img class="back" src="./../assets/back.png" @click="back">
-            <router-link :to="{name: 'Commentaries'}">
-            <div class="commentaries">
-                <div class="input">
-                    <span class="word">说点什么吧</span>
+    <div class="details">
+        <div class="details-top-box" fixed>
+            <img class="details-back" src="./../../assets/back.png" @click="back">
+            <router-link :to="{name: 'Comments'}">
+            <div class="details-commentaries">
+                <div class="details-input">
+                    <span class="details-word">说点什么吧</span>
                 </div>
-                <img src="./../assets/commentaries.png" class="comm-icon">
+                <img class="details-comm-icon" src="./../../assets/commentaries.png">
             </div>
             </router-link>
-            <img class="star" src="./../assets/star-null.png"  v-show="!this.isCollected"  @click="star">
-            <img class="star" src="./../assets/star-full.png"  v-show="this.isCollected"  @click="star">
+            <img class="details-star" src="./../../assets/star-null.png"  v-show="!this.isCollected"  @click="star">
+            <img class="details-star" src="./../../assets/star-full.png"  v-show="this.isCollected"  @click="star">
         </div>
-        <div class="title">{{ subject.title }}</div>
-        <div class="author-box">
-            <img :src="subject.author.avatar_url">
-            <span class="name">{{ subject.author.loginname }}</span>
-            <span class="time">{{ subject.create_at | filterTime }}</span>
+        <div class="details-title">{{ subject.title }}</div>
+        <div class="details-author-box">
+            <img class="details-img-author" :src="subject.author.avatar_url">
+            <span class="details-name">{{ subject.author.loginname }}</span>
+            <span class="details-time">{{ subject.create_at | filterTime }}</span>
         </div>
-        <div class="content" v-html="subject.content"></div>
+        <div class="details-content" v-html="subject.content"></div>
     </div>
 </template>
 
 <script>
 import { MessageBox } from 'mint-ui'
-import router from './../router/index'
+import router from './../../router/index'
 import { mapState } from 'vuex'
-import * as type from './../store/modules/type'
+import * as type from './../../store/modules/type'
 export default {
-  name: 'Subject',
-  computed: mapState({
-    subject (state) {
-      return state.topics.topics.topicsubject.sub
-    },
-    accesstoken (state) {
-      return state.user.accesstoken
-    },
-    success (state) {
-      return state.user.success
-    },
-    loginname (state) {
-      return state.user.loginname
-    },
-    arr (state) {
-      return state.user.user.data.collect_topics
-    },
-    isCollected (state) {
-      return state.topics.topics.topicsubject.isCollected
-    }
-  }),
-  watch: {
-    $route (to) {
-      this.fetchMsg(to.params.id)
-    }
-  },
+  name: 'Details',
   created () {
     this.fetchMsg()
   },
@@ -124,18 +99,43 @@ export default {
         }
       }
     }
+  },
+  computed: mapState({
+    subject (state) {
+      return state.topics.topics.topicsubject.sub
+    },
+    accesstoken (state) {
+      return state.user.accesstoken
+    },
+    success (state) {
+      return state.user.success
+    },
+    loginname (state) {
+      return state.user.loginname
+    },
+    arr (state) {
+      return state.user.user.data.collect_topics
+    },
+    isCollected (state) {
+      return state.topics.topics.topicsubject.isCollected
+    }
+  }),
+  watch: {
+    $route (to) {
+      this.fetchMsg(to.params.id)
+    }
   }
 }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-.subject
+.details
   width 100%
   height 100%
   overflow-x hidden
   text-align left
 
-  .top-box
+  .details-top-box
     width 100%
     height 60px
     position fixed
@@ -143,13 +143,13 @@ export default {
     box-sizing border-box
     background #f0f8ff
 
-    .back
+    .details-back
       width 30px
       height 30px
       margin 15px 0 0 20px
       float left
 
-    .commentaries
+    .details-commentaries
       width 250px
       height 60px
       float left
@@ -157,55 +157,55 @@ export default {
       flex-direction row
       background #f0f8ff
 
-      .input
+      .details-input
         width 200px
         height 30px
         padding-top 10px
         border 1px solid #aaaaaa
         margin 10px 0 10px 20px
 
-        .word
+        .details-word
           height 30px
           color #aaaaaa
           margin-top 7px
           font-size 0.9rem
 
-      .comm-icon
+      .details-comm-icon
         width 30px
         height 30px
         margin 15px 0 0 20px
 
-    .star
+    .details-star
       width 30px
       height 30px
       margin 15px 0px 0px 20px
       float left
 
-  .title
+  .details-title
     overflow-y auto
     padding 80px 10px 10px 10px
     font-size 1.36rem
     font-weight bold
     text-align center
 
-  .author-box
+  .details-author-box
     width 100%
     height 70px
     padding 10px
     box-sizing border-box
 
-    img
+    .details-img-author
       width 50px
       height 50px
       border-radius 100%
 
-    .name
+    .details-name
       font-size 1.2rem
       position relative
       top -20px
       z-index 1
 
-    .time
+    .details-time
       font-size 1.2rem
       color #aaaaaa
       position relative
@@ -213,9 +213,8 @@ export default {
       top -20px
       z-index 1
 
-    .content
+    .details-content
       padding 20px
       width 100%
       height auto
-      @include : center-block
 </style>

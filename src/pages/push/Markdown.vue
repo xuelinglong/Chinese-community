@@ -1,25 +1,24 @@
 <template>
     <div class="markdown">
-        <mt-navbar class="page-part" v-model="selected">
+        <mt-navbar class="markdown-page-part" v-model="selected">
             <mt-tab-item id="edit">编辑</mt-tab-item>
             <mt-tab-item id="preview">预览</mt-tab-item>
         </mt-navbar>
         <mt-tab-container v-model="selected">
             <mt-tab-container-item id="edit">
-                <div class="edit">
-                    <!-- <input type="text" v-model="content" placeholder="正文"> -->
-                    <textarea class="input" v-model="content" placeholder="正文"></textarea>
+                <div class="markdown-edit">
+                    <textarea class="markdown-input" v-model="content" placeholder="正文"></textarea>
                 </div>
-                <div class="button-box">
-                    <button class="save" @click="save">保存</button>
-                    <button class="cancel" @click="back">取消</button>
+                <div class="markdown-button-box">
+                    <button class="markdown-save" @click="save">保存</button>
+                    <button class="markdown-cancel" @click="back">取消</button>
                 </div>
             </mt-tab-container-item>
             <mt-tab-container-item id="preview">
-                <div class="preview">{{ this.content }}</div>
-                <div class="button-box">
-                    <button class="save" @click="save">保存</button>
-                    <button class="cancel" @click="back">取消</button>
+                <div class="markdown-preview">{{ this.content }}</div>
+                <div class="markdown-button-box">
+                    <button class="markdown-save" @click="save">保存</button>
+                    <button class="markdown-cancel" @click="back">取消</button>
                 </div>
             </mt-tab-container-item>
         </mt-tab-container>
@@ -29,7 +28,7 @@
 <script>
 import { Toast } from 'mint-ui'
 import { mapState } from 'vuex'
-import * as type from './../../../store/modules/type'
+import * as type from './../../store/modules/type'
 export default {
   name: 'Markdown',
   data () {
@@ -38,11 +37,6 @@ export default {
       content: []
     }
   },
-  computed: mapState({
-    contentData (state) {
-      return state.push.contentData
-    }
-  }),
   methods: {
     save () {
       if (this.content.length === 0) {
@@ -63,7 +57,12 @@ export default {
         duration: 1000
       })
     }
-  }
+  },
+  computed: mapState({
+    contentData (state) {
+      return state.push.contentData
+    }
+  })
 }
 </script>
 
@@ -77,7 +76,6 @@ export default {
   bottom 56px
   z-index 20
 
-  // background: #f0f0f0
   .mint-navbar
     height 55px
 
@@ -93,14 +91,14 @@ export default {
       height 100%
       text-align left
 
-      .edit
+      .markdown-edit
         width 100%
         height 400px
         padding 20px
         box-sizing border-box
         background #ECF0F1
 
-        .input
+        .markdown-input
           width 100%
           height 300px
           padding 8px
@@ -110,24 +108,24 @@ export default {
           font-size 1.2rem
           background #ECF0F1
 
-      .preview
+      .markdown-preview
         width 100%
         height 400px
         padding 20px
         box-sizing border-box
         background #ECF0F1
 
-      .button-box
+      .markdown-button-box
         width 50%
         margin 5% 0 0 50%
 
-        .save
+        .markdown-save
           width 45%
           height 40px
           font-size 1rem
           color #008000
 
-        .cancel
+        .markdown-cancel
           width 45%
           height 40px
           font-size 1rem

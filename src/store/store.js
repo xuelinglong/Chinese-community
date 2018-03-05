@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 import topics from './modules/topics'
 import user from './modules/user'
-import commentaries from './modules/commentaries'
+import comment from './modules/comment'
 import message from './modules/message'
 import push from './modules/push'
 
@@ -13,7 +13,7 @@ export default new Vuex.Store({
   modules: {
     topics,
     user,
-    commentaries,
+    comment,
     message,
     push
   }
