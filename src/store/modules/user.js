@@ -1,9 +1,10 @@
 import * as type from './type'
-
+import { setCookie } from './../../assets/js/cookie'
 import axios from 'axios'
 
 const mutations = {
   [type.LOGIN_USER] (state, action) {
+    state.accesstoken = action.accesstoken
     state.loginname = action.data.loginname
     state.success = action.data.success
     state.user.usrArr = action.data
@@ -17,6 +18,7 @@ const mutations = {
   [type.LOGOUT] (state) {
     state.success = false
     state.loginname = ''
+    state.accesstoken = ''
   },
   [type.CLEAR_USER_DATA] (state) {
     state.user.data = []
@@ -72,8 +74,10 @@ const actions = {
       })
       .then(res => {
         context.commit(type.LOGIN_USER, {
-          data: res.data
+          data: res.data,
+          accesstoken: payload.accesstoken
         })
+        setCookie('accesstoken', payload.accesstoken)
         context.dispatch(type.FETCH_USER, {
           loginname: res.data.loginname
         })
@@ -122,7 +126,7 @@ export default {
     },
     success: false,
     loginname: '',
-    accesstoken: '2cf09343-2162-48c8-88aa-bba001aa155d'
+    accesstoken: ''
   },
   mutations,
   getters,

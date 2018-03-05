@@ -16,9 +16,15 @@ import { Indicator } from 'mint-ui'
 import { mapState } from 'vuex'
 import * as type from './../../../store/modules/type'
 import router from './../../../router/index'
+import { getCookie } from './../../../assets/js/cookie'
 import Header from './../../header'
 export default {
   name: 'Login',
+  data () {
+    return {
+      accesstoken: '2cf09343-2162-48c8-88aa-bba001aa155d'
+    }
+  },
   components: {
     'v-header': Header
   },
@@ -28,6 +34,13 @@ export default {
         return state.user.accesstoken
       }
     })
+  },
+  created () {
+    let cookie = getCookie('accesstoken')
+    if (cookie) {
+      this.accesstoken = cookie
+      console.log(cookie)
+    }
   },
   methods: {
     back () {

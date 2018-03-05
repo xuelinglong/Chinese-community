@@ -42,16 +42,25 @@
 import { Indicator } from 'mint-ui'
 import { mapState, mapGetters } from 'vuex'
 import * as type from './../../store/modules/type'
+import { getCookie } from './../../assets/js/cookie'
 import Header from './../header'
 export default {
   name: 'My',
   data () {
     return {
       // lists: []
+      accesstoken: '2cf09343-2162-48c8-88aa-bba001aa155d'
     }
   },
   components: {
     'v-header': Header
+  },
+  created () {
+    let cookie = getCookie('accesstoken')
+    if (cookie) {
+      this.accesstoken = cookie
+      console.log(cookie)
+    }
   },
   computed: {
     ...mapState({
@@ -63,10 +72,10 @@ export default {
       },
       usr (state) {
         return state.user.user.data
-      },
-      accesstoken (state) {
-        return state.user.accesstoken
       }
+      // accesstoken (state) {
+      //   return state.user.accesstoken
+      // }
     }),
     ...mapGetters([
       'COLLECT_TOPICS',
